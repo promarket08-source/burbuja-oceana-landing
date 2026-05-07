@@ -97,9 +97,7 @@
     .content-layer { position: relative; z-index: 10; }
     
     .lightbox { display: none; }
-    .lightbox.active { 
-      display: flex; 
-    }
+    .lightbox.active { display: flex; }
     
     .chatbot-panel { display: none; }
     .chatbot-panel.active { display: flex; }
@@ -446,53 +444,60 @@
   </div>
   
   <script>
-    // 3D Background
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    
-    // Create floating bubbles
-    const bubbles = [];
-    const bubbleGeometry = new THREE.SphereGeometry(0.1, 32, 32);
-    const bubbleMaterial = new THREE.MeshBasicMaterial({ 
-      color: 0x41c4e6, 
-      transparent: true, 
-      opacity: 0.3 
-    });
-    
-    for (let i = 0; i < 50; i++) {
-      const bubble = new THREE.Mesh(bubbleGeometry, bubbleMaterial);
-      bubble.position.x = (Math.random() - 0.5) * 10;
-      bubble.position.y = (Math.random() - 0.5) * 10;
-      bubble.position.z = (Math.random() - 0.5) * 10;
-      bubble.userData.speed = Math.random() * 0.02;
-      scene.add(bubble);
-      bubbles.push(bubble);
-    }
-    
-    camera.position.z = 5;
-    
-    function animate() {
-      requestAnimationFrame(animate);
+    // 3D Background - PROPER SYNTAX WITH ALL COMMAS
+    try {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ 
+        canvas: document.getElementById('three-canvas'), 
+        alpha: true 
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
       
-      bubbles.forEach(bubble => {
-        bubble.position.y += bubble.userData.speed;
-        if (bubble.position.y > 5) bubble.position.y = -5;
-        bubble.rotation.x += 0.01;
-        bubble.rotation.y += 0.01;
+      // Create floating bubbles
+      const bubbles = [];
+      const bubbleGeometry = new THREE.SphereGeometry(0.1, 32, 32);
+      const bubbleMaterial = new THREE.MeshBasicMaterial({ 
+        color: 0x41c4e6, 
+        transparent: true, 
+        opacity: 0.3 
       });
       
-      renderer.render(scene, camera);
+      for (let i = 0; i < 50; i++) {
+        const bubble = new THREE.Mesh(bubbleGeometry, bubbleMaterial);
+        bubble.position.x = (Math.random() - 0.5) * 10;
+        bubble.position.y = (Math.random() - 0.5) * 10;
+        bubble.position.z = (Math.random() - 0.5) * 10;
+        bubble.userData.speed = Math.random() * 0.02;
+        scene.add(bubble);
+        bubbles.push(bubble);
+      }
+      
+      camera.position.z = 5;
+      
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        bubbles.forEach(bubble => {
+          bubble.position.y += bubble.userData.speed;
+          if (bubble.position.y > 5) bubble.position.y = -5;
+          bubble.rotation.x += 0.01;
+          bubble.rotation.y += 0.01;
+        });
+        
+        renderer.render(scene, camera);
+      }
+      animate();
+      
+      // Resize handler
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    } catch (e) {
+      console.error('Three.js error:', e);
     }
-    animate();
-    
-    // Resize handler
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
     
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
@@ -508,7 +513,7 @@
     
     // Lightbox
     document.querySelectorAll('.lightbox-trigger').forEach(item => {
-      item.addEventListener('click', event => {
+      item.addEventListener('click', (event) => {
         const imgSrc = item.getAttribute('data-src');
         document.getElementById('lightbox-img').src = imgSrc;
         document.getElementById('lightbox').classList.add('active');
@@ -570,7 +575,7 @@
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     });
     
-    chatbotInput.addEventListener('keypress', (e) => {
+    chatbotInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') chatbotSend.click();
     });
     
