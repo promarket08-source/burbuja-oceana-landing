@@ -10,8 +10,12 @@ document.addEventListener('DOMContentLoaded', function(){
       'assets/mind-map.png',
       'assets/unnamed.png'
     ],
+    videos: [
+      'assets/video-propuesta-valor.mp4',
+      'assets/video-proyecto-estrategico.mp4',
+      'assets/video-hoteles-bunker.mp4'
+    ],
     audios: [
-      'assets/audio-hoteles-bunker.m4a',
       'assets/audio-modernizacion-sustentable.m4a'
     ],
     videos: [
