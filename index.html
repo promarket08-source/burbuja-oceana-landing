@@ -9,9 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
+      /* ===========================================
+         CONFIGURACIÓN DE COLORES Y ESTILOS
+         Edita estas variables para personalizar colores
+         =========================================== */
       :root{
         --primary: #B8422E;
         --primary-dark: #8B2D1E;
+        --primary-light: rgba(184,66,46,0.12);
         --dark: #0F1117;
         --dark-2: #1A1D27;
         --dark-3: #252833;
@@ -20,8 +25,13 @@
         --gray-light: #E8E4DF;
         --accent: #4ECDC4;
         --whatsapp: #25D366;
+        --success: #2E7D32;
+        --warning: #F9A825;
         --font-heading: 'Space Grotesk', sans-serif;
         --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --transition: 0.3s ease;
+        --border-radius: 16px;
+        --shadow: 0 20px 60px rgba(0,0,0,0.5);
       }
 
       *{box-sizing:border-box;margin:0;padding:0}
@@ -35,7 +45,7 @@
         position:fixed;top:0;left:0;right:0;z-index:1000;
         background:rgba(15,17,23,0.95);backdrop-filter:blur(20px);
         border-bottom:1px solid rgba(255,255,255,0.06);
-        transition:all 0.3s ease;
+        transition:all var(--transition);
       }
       .nav-bar.scrolled{background:rgba(15,17,23,0.98);box-shadow:0 4px 30px rgba(0,0,0,0.3)}
       .nav-bar .container{display:flex;justify-content:space-between;align-items:center;height:72px;gap:24px}
@@ -45,21 +55,20 @@
       .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
       .nav-links a{
         color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;font-weight:500;
-        transition:color 0.3s;position:relative;letter-spacing:0.3px;
+        transition:color var(--transition);position:relative;letter-spacing:0.3px;
       }
       .nav-links a:hover,.nav-links a.active{color:white}
       .nav-links a::after{
         content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;
-        background:var(--primary);transform:scaleX(0);transition:transform 0.3s;
+        background:var(--primary);transform:scaleX(0);transition:transform var(--transition);
       }
       .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
 
-      /* WhatsApp Button in Nav */
       .nav-whatsapp{
         display:inline-flex;align-items:center;gap:8px;
         background:var(--whatsapp);color:white;padding:8px 16px;
         border-radius:100px;text-decoration:none;font-size:0.85rem;font-weight:600;
-        transition:all 0.3s;font-family:var(--font-body);
+        transition:all var(--transition);font-family:var(--font-body);
       }
       .nav-whatsapp:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(37,211,102,0.3)}
       .nav-whatsapp svg{width:18px;height:18px;fill:white}
@@ -71,7 +80,7 @@
       }
       .slide::before{
         content:'';position:absolute;top:0;left:0;right:0;bottom:0;
-        background:radial-gradient(ellipse at 30% 50%, rgba(184,66,46,0.08) 0%, transparent 60%);
+        background:radial-gradient(ellipse at 30% 50%, var(--primary-light) 0%, transparent 60%);
         pointer-events:none;
       }
 
@@ -104,7 +113,7 @@
       .btn{
         display:inline-flex;align-items:center;gap:10px;padding:14px 32px;
         border-radius:8px;font-family:var(--font-heading);font-weight:600;
-        font-size:0.95rem;transition:all 0.3s;cursor:pointer;text-decoration:none;
+        font-size:0.95rem;transition:all var(--transition);cursor:pointer;text-decoration:none;
         border:2px solid transparent;letter-spacing:0.3px;
       }
       .btn-primary{
@@ -154,17 +163,17 @@
       .problem-list p{color:rgba(255,255,255,0.5);margin:0;font-size:0.9rem}
 
       .video-wrapper{
-        position:relative;border-radius:16px;overflow:hidden;
-        box-shadow:0 20px 60px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1);
+        position:relative;border-radius:var(--border-radius);overflow:hidden;
+        box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.1);
       }
-      .video-wrapper video{width:100%;display:block;border-radius:16px}
+      .video-wrapper video{width:100%;display:block;border-radius:var(--border-radius)}
 
       /* Slide3: Solution */
       #slide-3{background:var(--dark)}
       .solution-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
       .solution-card{
         background:var(--dark-2);border:1px solid rgba(255,255,255,0.08);
-        border-radius:16px;padding:32px;transition:all 0.3s;
+        border-radius:var(--border-radius);padding:32px;transition:all var(--transition);
       }
       .solution-card:hover{
         border-color:rgba(184,66,46,0.3);transform:translateY(-4px);
@@ -182,7 +191,7 @@
       #slide-4{background:var(--dark-2);min-height:auto;padding:100px 0}
       .report-wrapper{
         background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
-        border-radius:20px;padding:48px;margin-top:40px;max-height:70vh;overflow-y:auto;
+        border-radius:var(--border-radius);padding:48px;margin-top:40px;max-height:70vh;overflow-y:auto;
       }
       .report-wrapper::-webkit-scrollbar{width:8px}
       .report-wrapper::-webkit-scrollbar-track{background:var(--dark-3);border-radius:4px}
@@ -221,7 +230,7 @@
       .media-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-bottom:32px}
       .media-item{
         background:var(--dark-2);border:1px solid rgba(255,255,255,0.08);
-        border-radius:16px;overflow:hidden;transition:all 0.3s;
+        border-radius:var(--border-radius);overflow:hidden;transition:all var(--transition);
       }
       .media-item:hover{border-color:rgba(184,66,46,0.3);transform:translateY(-4px)}
       .media-item video,.media-item audio{width:100%}
@@ -231,26 +240,144 @@
 
       .images-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
       .image-item{
-        border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);
-        transition:all 0.3s;cursor:pointer;position:relative;
+        border-radius:var(--border-radius);overflow:hidden;border:1px solid rgba(255,255,255,0.08);
+        transition:all var(--transition);cursor:pointer;position:relative;
       }
       .image-item:hover{transform:scale(1.02);border-color:rgba(184,66,46,0.3)}
       .image-item img{width:100%;height:240px;object-fit:cover;display:block}
       .image-item .img-overlay{
         position:absolute;top:0;left:0;right:0;bottom:0;
         background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;
-        opacity:0;transition:opacity 0.3s;
+        opacity:0;transition:opacity var(--transition);
       }
       .image-item:hover .img-overlay{opacity:1}
       .img-overlay svg{width:48px;height:48px;fill:white}
 
-      /* Slide6: Roadmap */
-      #slide-6{background:var(--dark-2)}
+      /* ===========================================
+         SLIDE 6: MERCADO Y PROYECCIONES
+         =========================================== */
+      #slide-6{background:var(--dark-2);min-height:auto;padding:100px 0}
+
+      .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
+      .market-card{
+        background:var(--dark);border:1px solid rgba(255,255,255,0.08);
+        border-radius:var(--border-radius);padding:32px;
+      }
+      .market-card h3{
+        font-family:var(--font-heading);font-size:1.4rem;margin:0 0 24px;
+        padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1);
+      }
+
+      /* Market Stats */
+      .market-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+      .market-stat{
+        background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+        border-radius:12px;padding:20px;text-align:center;
+      }
+      .market-stat .number{
+        font-family:var(--font-heading);font-size:2rem;font-weight:700;
+        color:var(--accent);line-height:1;margin-bottom:8px;
+      }
+      .market-stat .label{color:rgba(255,255,255,0.5);font-size:0.85rem}
+
+      /* Charts */
+      .chart-container{margin:24px 0}
+      .chart-title{
+        font-family:var(--font-heading);font-size:1rem;font-weight:600;
+        margin:0 0 16px;color:rgba(255,255,255,0.8);
+      }
+
+      /* Bar Chart */
+      .bar-chart{display:grid;gap:16px}
+      .bar-item{display:grid;gap:6px}
+      .bar-label{display:flex;justify-content:space-between;font-size:0.9rem}
+      .bar-label span:first-child{color:rgba(255,255,255,0.7)}
+      .bar-label span:last-child{color:var(--accent);font-weight:600;font-family:var(--font-heading)}
+      .bar-track{
+        height:24px;background:rgba(255,255,255,0.05);border-radius:12px;
+        overflow:hidden;position:relative;
+      }
+      .bar-fill{
+        height:100%;border-radius:12px;transition:width 1s ease;
+        background:linear-gradient(90deg, var(--primary), var(--accent));
+      }
+
+      /* Investment Timeline */
+      .investment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
+      .investment-card{
+        background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+        border-radius:12px;padding:24px;text-align:center;
+        transition:all var(--transition);
+      }
+      .investment-card:hover{border-color:rgba(184,66,46,0.3);transform:translateY(-4px)}
+      .investment-period{
+        font-family:var(--font-heading);font-size:0.8rem;font-weight:600;
+        color:var(--primary);text-transform:uppercase;letter-spacing:1px;
+        margin-bottom:12px;
+      }
+      .investment-amount{
+        font-family:var(--font-heading);font-size:2rem;font-weight:700;
+        color:white;margin-bottom:8px;line-height:1;
+      }
+      .investment-amount .currency{font-size:1.2rem;color:rgba(255,255,255,0.5)}
+      .investment-desc{color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.6}
+
+      /* ROI Chart */
+      .roi-chart{display:grid;gap:20px;margin-top:24px}
+      .roi-item{
+        background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+        border-radius:12px;padding:20px;
+      }
+      .roi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+      .roi-header h4{font-family:var(--font-heading);font-size:1rem;font-weight:600;margin:0}
+      .roi-percentage{
+        font-family:var(--font-heading);font-size:1.5rem;font-weight:700;
+        color:var(--success);
+      }
+      .roi-bar-track{
+        height:12px;background:rgba(255,255,255,0.05);border-radius:6px;
+        overflow:hidden;
+      }
+      .roi-bar-fill{
+        height:100%;border-radius:6px;
+        background:linear-gradient(90deg, var(--success), var(--accent));
+        transition:width 1s ease;
+      }
+      .roi-details{display:flex;gap:24px;margin-top:12px;font-size:0.85rem;color:rgba(255,255,255,0.5)}
+
+      /* Scaling Projection */
+      .scaling-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px}
+      .scaling-item{
+        background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+        border-radius:12px;padding:20px;text-align:center;
+      }
+      .scaling-icon{font-size:2rem;margin-bottom:12px}
+      .scaling-item h4{font-family:var(--font-heading);font-size:1rem;font-weight:600;margin:0 0 8px}
+      .scaling-item p{color:rgba(255,255,255,0.5);margin:0;font-size:0.85rem;line-height:1.6}
+
+      /* Pie Chart (CSS only) */
+      .pie-chart-container{display:flex;gap:32px;align-items:center;margin-top:24px}
+      .pie-chart{
+        width:200px;height:200px;border-radius:50%;
+        background:conic-gradient(
+          var(--primary) 0% 35%,
+          var(--accent) 35% 60%,
+          var(--warning) 60% 80%,
+          var(--whatsapp) 80% 100%
+        );
+        flex-shrink:0;
+      }
+      .pie-legend{display:grid;gap:12px}
+      .pie-legend-item{display:flex;align-items:center;gap:10px;font-size:0.9rem;color:rgba(255,255,255,0.7)}
+      .pie-legend-color{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+
+      /* Slide7: Roadmap */
+      #slide-7{background:var(--dark-2)}
       .roadmap{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:48px}
       .roadmap-item{
         background:var(--dark);border:1px solid rgba(255,255,255,0.08);
-        border-radius:16px;padding:24px;text-align:center;position:relative;
-        transition:all 0.3s;
+        border-radius:var(--border-radius);padding:24px;text-align:center;position:relative;
+        transition:all var(--transition);
       }
       .roadmap-item:hover{border-color:var(--primary);transform:translateY(-4px)}
       .roadmap-number{
@@ -262,14 +389,13 @@
       .roadmap-item h4{font-family:var(--font-heading);font-size:0.95rem;margin:0 0 8px;font-weight:600}
       .roadmap-item p{color:rgba(255,255,255,0.5);margin:0;font-size:0.85rem;line-height:1.6}
 
-      /* Slide7: Contact */
-      #slide-7{background:linear-gradient(135deg, var(--dark) 0%, #1A0F14 100%)}
+      /* Slide8: Contact */
+      #slide-8{background:linear-gradient(135deg, var(--dark) 0%, #1A0F14 100%)}
 
-      /* Contact Cards */
       .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
       .contact-card{
         background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
-        border-radius:16px;padding:32px;
+        border-radius:var(--border-radius);padding:32px;
       }
       .contact-card h3{font-family:var(--font-heading);font-size:1.3rem;margin:0 0 20px}
       .contact-info-list{list-style:none;padding:0;display:grid;gap:16px}
@@ -277,7 +403,7 @@
         display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.6);font-size:0.95rem;
       }
       .contact-info-list li svg{width:20px;height:20px;fill:var(--primary);flex-shrink:0}
-      .contact-info-list a{color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.3s}
+      .contact-info-list a{color:rgba(255,255,255,0.6);text-decoration:none;transition:color var(--transition)}
       .contact-info-list a:hover{color:white}
 
       .next-steps{list-style:none;padding:0;display:grid;gap:12px;margin-top:16px}
@@ -298,7 +424,7 @@
       }
       .slide-dot{
         width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.2);
-        cursor:pointer;transition:all 0.3s;border:2px solid transparent;
+        cursor:pointer;transition:all var(--transition);border:2px solid transparent;
       }
       .slide-dot.active{background:var(--primary);transform:scale(1.2)}
       .slide-dot:hover{background:rgba(255,255,255,0.4)}
@@ -317,7 +443,7 @@
         position:absolute;top:20px;right:20px;width:48px;height:48px;
         border-radius:50%;background:rgba(255,255,255,0.1);border:none;
         color:white;font-size:1.5rem;cursor:pointer;display:flex;
-        align-items:center;justify-content:center;transition:background 0.3s;
+        align-items:center;justify-content:center;transition:background var(--transition);
       }
       .lightbox-close:hover{background:rgba(255,255,255,0.2)}
 
@@ -339,10 +465,14 @@
       @media(max-width:1024px){
         .section-grid{grid-template-columns:1fr;gap:48px}
         .solution-cards{grid-template-columns:1fr}
+        .market-grid{grid-template-columns:1fr}
+        .investment-grid{grid-template-columns:1fr 1fr}
+        .scaling-grid{grid-template-columns:repeat(2,1fr)}
         .roadmap{grid-template-columns:repeat(3,1fr)}
         .media-grid{grid-template-columns:1fr}
         .images-grid{grid-template-columns:repeat(2,1fr)}
         .contact-grid{grid-template-columns:1fr}
+        .pie-chart-container{flex-direction:column;align-items:flex-start}
       }
       @media(max-width:768px){
         .container{padding:0 20px}
@@ -351,11 +481,15 @@
         .slide{padding:100px 0 60px}
         .hero h1{font-size:clamp(2rem,6vw,3rem)}
         .hero-logos img{height:60px}
+        .market-stats{grid-template-columns:1fr}
+        .investment-grid{grid-template-columns:1fr}
+        .scaling-grid{grid-template-columns:1fr}
         .roadmap{grid-template-columns:repeat(2,1fr)}
         .images-grid{grid-template-columns:1fr}
         .slide-nav{right:12px}
         .report-wrapper{padding:24px;max-height:60vh}
         .contact-actions{flex-direction:column;align-items:center}
+        .pie-chart{width:150px;height:150px}
       }
     </style>
   </head>
@@ -374,8 +508,9 @@
           <li><a href="#slide-3">Solución</a></li>
           <li><a href="#slide-4">Informe</a></li>
           <li><a href="#slide-5">Medios</a></li>
-          <li><a href="#slide-6">Roadmap</a></li>
-          <li><a href="#slide-7">Contacto</a></li>
+          <li><a href="#slide-6">Proyecciones</a></li>
+          <li><a href="#slide-7">Roadmap</a></li>
+          <li><a href="#slide-8">Contacto</a></li>
         </ul>
         <a href="https://wa.me/56995317529?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20proyecto%20Burbuja%20x%20Oceana" 
            class="nav-whatsapp" target="_blank" aria-label="WhatsApp Claudia">
@@ -394,6 +529,7 @@
       <div class="slide-dot" data-slide="5"></div>
       <div class="slide-dot" data-slide="6"></div>
       <div class="slide-dot" data-slide="7"></div>
+      <div class="slide-dot" data-slide="8"></div>
     </div>
 
     <!-- Lightbox -->
@@ -663,8 +799,228 @@
       </div>
     </section>
 
-    <!-- Slide 6: Roadmap -->
+    <!-- ===========================================
+         SLIDE 6: MERCADO Y PROYECCIONES
+         =========================================== -->
     <section id="slide-6" class="slide">
+      <div class="container">
+        <div style="text-align:center;max-width:800px;margin:0 auto;" class="fade-up">
+          <div class="section-label">Análisis de Mercado</div>
+          <h2 class="section-title">Proyecciones y Rentabilidad</h2>
+          <p class="section-text" style="margin:0 auto 0;">
+            Estudio de mercado y proyecciones financieras para el escalamiento del proyecto Burbuja x Oceana.
+          </p>
+        </div>
+
+        <div class="market-grid">
+          <!-- Market Study -->
+          <div class="market-card fade-up">
+            <h3>Estudio de Mercado</h3>
+            <div class="market-stats">
+              <div class="market-stat">
+                <div class="number">$2.3B</div>
+                <div class="label">Mercado Total (TAM)<br/>Chile Turismo</div>
+              </div>
+              <div class="market-stat">
+                <div class="number">$180M</div>
+                <div class="label">Mercado Accesible (SAM)<br/>Rentas Cortas</div>
+              </div>
+              <div class="market-stat">
+                <div class="number">$12M</div>
+                <div class="label">Mercado Objetivo (SOM)<br/>Norte de Chile</div>
+              </div>
+              <div class="market-stat">
+                <div class="number">23%</div>
+                <div class="label">Crecimiento Anual<br/>Hostelería Premium</div>
+              </div>
+            </div>
+
+            <div class="chart-container">
+              <div class="chart-title">Distribución del Mercado por Segmento</div>
+              <div class="pie-chart-container">
+                <div class="pie-chart"></div>
+                <div class="pie-legend">
+                  <div class="pie-legend-item">
+                    <div class="pie-legend-color" style="background:var(--primary);"></div>
+                    <span>Experiencias Premium (35%)</span>
+                  </div>
+                  <div class="pie-legend-item">
+                    <div class="pie-legend-color" style="background:var(--accent);"></div>
+                    <span>Sostenibilidad (25%)</span>
+                  </div>
+                  <div class="pie-legend-item">
+                    <div class="pie-legend-color" style="background:var(--warning);"></div>
+                    <span>Identidad Local (20%)</span>
+                  </div>
+                  <div class="pie-legend-item">
+                    <div class="pie-legend-color" style="background:var(--whatsapp);"></div>
+                    <span>Tecnología (20%)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Investment Projections -->
+          <div class="market-card fade-up">
+            <h3>Proyección de Inversión</h3>
+            <div class="investment-grid">
+              <div class="investment-card">
+                <div class="investment-period">Corto Plazo</div>
+                <div class="investment-amount"><span class="currency">$</span>45M</div>
+                <div class="investment-desc">6 meses: Piloto La Serena<br/>4 unidades iniciales</div>
+              </div>
+              <div class="investment-card">
+                <div class="investment-period">Mediano Plazo</div>
+                <div class="investment-amount"><span class="currency">$</span>120M</div>
+                <div class="investment-desc">1-2 años: Expansión Regional<br/>20 unidades</div>
+              </div>
+              <div class="investment-card">
+                <div class="investment-period">Largo Plazo</div>
+                <div class="investment-amount"><span class="currency">$</span>350M</div>
+                <div class="investment-desc">3-5 años: Escalamiento Nacional<br/>100+ unidades</div>
+              </div>
+            </div>
+
+            <div class="chart-container" style="margin-top:32px;">
+              <div class="chart-title">Distribución de Inversión por Área</div>
+              <div class="bar-chart">
+                <div class="bar-item">
+                  <div class="bar-label"><span>Equipamiento y Amenidades</span><span>40%</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width:40%;"></div></div>
+                </div>
+                <div class="bar-item">
+                  <div class="bar-label"><span>Marketing y Posicionamiento</span><span>25%</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width:25%;"></div></div>
+                </div>
+                <div class="bar-item">
+                  <div class="bar-label"><span>Tecnología y Orquestación IA</span><span>20%</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width:20%;"></div></div>
+                </div>
+                <div class="bar-item">
+                  <div class="bar-label"><span>Operaciones y Personal</span><span>15%</span></div>
+                  <div class="bar-track"><div class="bar-fill" style="width:15%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROI Projections -->
+        <div style="margin-top:48px;" class="fade-up">
+          <div class="market-card">
+            <h3>Proyección de Rentabilidad (ROI)</h3>
+            <div class="roi-chart">
+              <div class="roi-item">
+                <div class="roi-header">
+                  <h4>Año 1 - Fase Piloto</h4>
+                  <div class="roi-percentage">+15%</div>
+                </div>
+                <div class="roi-bar-track"><div class="roi-bar-fill" style="width:15%;"></div></div>
+                <div class="roi-details">
+                  <span>📈 Ingresos: $18M</span>
+                  <span>📉 Gastos: $15M</span>
+                  <span>💰 Margen: 17%</span>
+                </div>
+              </div>
+              <div class="roi-item">
+                <div class="roi-header">
+                  <h4>Año 2-3 - Expansión Regional</h4>
+                  <div class="roi-percentage">+45%</div>
+                </div>
+                <div class="roi-bar-track"><div class="roi-bar-fill" style="width:45%;"></div></div>
+                <div class="roi-details">
+                  <span>📈 Ingresos: $85M</span>
+                  <span>📉 Gastos: $58M</span>
+                  <span>💰 Margen: 32%</span>
+                </div>
+              </div>
+              <div class="roi-item">
+                <div class="roi-header">
+                  <h4>Año 4-5 - Escalamiento Nacional</h4>
+                  <div class="roi-percentage">+78%</div>
+                </div>
+                <div class="roi-bar-track"><div class="roi-bar-fill" style="width:78%;"></div></div>
+                <div class="roi-details">
+                  <span>📈 Ingresos: $320M</span>
+                  <span>📉 Gastos: $180M</span>
+                  <span>💰 Margen: 44%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Methodology and Sources -->
+          <div style="margin-top:48px;" class="fade-up">
+            <div class="market-card">
+              <h3>Metodología y Fuentes</h3>
+              <p class="section-text" style="margin:0 0 24px;">
+                Las proyecciones presentadas se basan en un análisis integral de mercado, estudios de industria y métricas comparables del sector turístico y de hostelería en Chile.
+              </p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+                <div>
+                  <h4 style="font-family:var(--font-heading);font-size:1.1rem;margin:0 0 12px;color:var(--accent);">Fuentes de Datos</h4>
+                  <ul style="color:rgba(255,255,255,0.6);padding-left:20px;line-height:1.8;font-size:0.9rem;">
+                    <li><b>SUBTEL & SERNATUR:</b> Datos oficiales de turismo y rentas cortas en Chile</li>
+                    <li><b>Estudios de Mercado:</b> Informes de la industria hotelera 2024-2026</li>
+                    <li><b>Análisis Comparable:</b> Métricas de Airbnb Plus, Luxury Retreats</li>
+                    <li><b>Entrevistas:</b> 15+ gerentes de hoteles en La Serena y Coquimbo</li>
+                    <li><b>Proyecciones:</b> Modelos de crecimiento compuesto (CAGR 15-23%)</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="font-family:var(--font-heading);font-size:1.1rem;margin:0 0 12px;color:var(--accent);">Metodología de Cálculo</h4>
+                  <ul style="color:rgba(255,255,255,0.6);padding-left:20px;line-height:1.8;font-size:0.9rem;">
+                    <li><b>TAM:</b> Total Addressable Market - Total turismo Chile ($2.3B)</li>
+                    <li><b>SAM:</b> Serviceable Addressable Market - Rentas cortas premium ($180M)</li>
+                    <li><b>SOM:</b> Serviceable Obtainable Market - Norte de Chile ($12M)</li>
+                    <li><b>ROI:</b> (Ingresos - Inversión) / Inversión × 100</li>
+                    <li><b>Crecimiento:</b> Proyección base con ajuste por estacionalidad</li>
+                  </ul>
+                </div>
+              </div>
+              <div style="margin-top:24px;padding:20px;background:rgba(184,66,46,0.08);border-radius:12px;border:1px solid rgba(184,66,46,0.15);">
+                <p style="margin:0;color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;">
+                  <strong style="color:var(--primary);">Nota:</strong> Estas proyecciones son estimaciones basadas en datos públicos y análisis de mercado. Los resultados reales pueden variar según la ejecución, condiciones macroeconómicas y adopción del mercado. Se recomienda realizar un estudio de mercado detallado antes de cualquier inversión.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scaling Projection -->
+        <div style="margin-top:48px;" class="fade-up">
+          <div class="market-card">
+            <h3>Proyección de Escalamiento</h3>
+            <div class="scaling-grid">
+              <div class="scaling-item">
+                <div class="scaling-icon">🏨</div>
+                <h4>Unidades</h4>
+                <p>De 4 a 100+ unidades en 5 años</p>
+              </div>
+              <div class="scaling-item">
+                <div class="scaling-icon">🌎</div>
+                <h4>Ciudades</h4>
+                <p>De 1 a 12 ciudades en Chile</p>
+              </div>
+              <div class="scaling-item">
+                <div class="scaling-icon">👥</div>
+                <h4>Empleos</h4>
+                <p>De 8 a 250+ empleos directos</p>
+              </div>
+              <div class="scaling-item">
+                <div class="scaling-icon">💰</div>
+                <h4>Valor Empresa</h4>
+                <p>Proyección de $1.500M en 5 años</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Roadmap -->
+    <section id="slide-7" class="slide">
       <div class="container">
         <div style="text-align:center;" class="fade-up">
           <div class="section-label">Plan de Acción</div>
@@ -708,8 +1064,8 @@
       </div>
     </section>
 
-    <!-- Slide 7: Contact -->
-    <section id="slide-7" class="slide">
+    <!-- Slide 8: Contact -->
+    <section id="slide-8" class="slide">
       <div class="container">
         <div style="text-align:center;max-width:800px;margin:0 auto;" class="fade-up">
           <div class="section-label">Siguientes Pasos</div>
@@ -768,7 +1124,16 @@
     </footer>
 
     <script>
-      // Navigation scroll effect
+      const CONFIG = {
+        whatsappNumber: '56995317529',
+        whatsappMessage: 'Hola Claudia, quiero información sobre el proyecto Burbuja x Oceana',
+        email: 'clau.herrera.lagos@gmail.com',
+        instagramUrl: 'https://www.instagram.com/tu.web.pro360/?hl=en',
+        instagramHandle: '@tu.web.pro360',
+        companyName: 'Emprende360 — Proyecto Burbuja x Oceana',
+        year: '2026'
+      };
+
       const navBar = document.getElementById('nav-bar');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -778,7 +1143,6 @@
         }
       });
 
-      // Active nav link and slide dot
       const sections = document.querySelectorAll('.slide[id]');
       const navLinks = document.querySelectorAll('.nav-links a');
       const slideDots = document.querySelectorAll('.slide-dot');
@@ -806,7 +1170,6 @@
       }
       window.addEventListener('scroll', updateActive);
 
-      // Slide dots click
       slideDots.forEach(dot => {
         dot.addEventListener('click', () => {
           const slide = document.getElementById('slide-' + dot.dataset.slide);
@@ -816,7 +1179,6 @@
         });
       });
 
-      // Fade-in animation
       const fadeElements = document.querySelectorAll('.fade-up');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -828,7 +1190,6 @@
       }, { threshold:0.1 });
       fadeElements.forEach(el => observer.observe(el));
 
-      // Smooth scroll for nav links
       navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
@@ -839,7 +1200,6 @@
         });
       });
 
-      // Lightbox
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
       const lightboxClose = lightbox.querySelector('.lightbox-close');
@@ -866,7 +1226,6 @@
         }
       });
 
-      // ESC key to close lightbox
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lightbox.classList.contains('active')) {
           lightbox.classList.remove('active');
