@@ -4,18 +4,18 @@ document.addEventListener('DOMContentLoaded', function(){
   if(!galeria){ return; }
   const assets = {
     images: [
-      'assets/images/img_local_1.svg',
-      'assets/images/img_local_2.svg',
-      'assets/images/img_local_3.svg',
-      'assets/images/img_local_4.svg',
+      'assets/logo-burbuja.png',
+      'assets/logo-oceana-main.png',
+      'assets/mapa-mental.png',
+      'assets/mind-map.png'
     ],
     audios: [
-      // Placeholder path; replace with real assets
-      'assets/audio/sample1.mp3'
+      'assets/audio-hoteles-bunker.m4a'
     ],
     videos: [
-      // Placeholder path; replace with real assets
-      'assets/videos/sample1.mp4'
+      'assets/video-propuesta-valor.mp4',
+      'assets/video-proyecto-oceana.mp4',
+      'assets/video-presentacion.mp4'
     ]
   };
   // Render images
