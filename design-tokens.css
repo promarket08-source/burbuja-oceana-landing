@@ -1,20 +1,57 @@
-/* DESIGN.md inspired design tokens (Google's Design.md) */
-:root{
-  --ds-color-primary: #1A1C1E;
-  --ds-color-secondary: #6C7278;
-  --ds-color-tertiary: #B8422E;
-  --ds-color-neutral: #F7F5F2;
-  --ds-font-h1: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-  --ds-font-body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-  --ds-font-caption: 'Space Grotesk', system-ui, Roboto, Arial;
-  --ds-rounded-sm: 4px;
-  --ds-rounded-md: 8px;
-  --ds-spacing-sm: 8px;
-  --ds-spacing-md: 16px;
+:root {
+  /* Typography - Refined, distinctive choices */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-heading: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'DM Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  
+  /* Color Palette - Ocean & Earth inspired */
+  --ocean-deep: #0B3D5B;
+  --ocean-mid: #1A6B8A;
+  --ocean-light: #2EA5C7;
+  --sand-dark: #8B7355;
+  --sand-mid: #C4A87C;
+  --sand-light: #F5E6D0;
+  --papaya: #E8623E;
+  --papaya-light: rgba(232, 98, 62, 0.12);
+  --success: #2E7D32;
+  --whatsapp: #25D366;
+  
+  /* Dark Theme */
+  --dark: #0A0E14;
+  --dark-2: #121821;
+  --dark-3: #1C2230;
+  --text-primary: #F5E6D0;
+  --text-secondary: rgba(245, 230, 208, 0.6);
+  --border: rgba(245, 230, 208, 0.08);
+  
+  /* Light Theme */
+  --light: #FEFCF9;
+  --light-2: #FFFFFF;
+  --light-3: #F5F0EB;
+  --text-primary-light: #0A0E14;
+  --text-secondary-light: rgba(10, 14, 20, 0.6);
+  --border-light: rgba(10, 14, 20, 0.08);
+  
+  /* Spacing & Effects */
+  --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --border-radius: 20px;
+  --border-radius-sm: 12px;
+  --shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  --shadow-light: 0 32px 80px rgba(0, 0, 0, 0.08);
 }
 
-/* Optional: apply tokens to key elements for a premium look */
-body{font-family: var(--ds-font-body); color: #e8eefc; background: #0b1020;}
-.site-header{background: rgba(26,28,30,.95); border-bottom: 1px solid #3a3f57}
-.btn{font-family: var(--ds-font-body); border-radius: var(--ds-rounded-md);}
-.card{border-radius: var(--ds-rounded-md);} 
+/* Light Theme Application */
+html[data-theme="light"] {
+  --dark: var(--light);
+  --dark-2: var(--light-2);
+  --dark-3: var(--light-3);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --border: var(--border-light);
+  --shadow: var(--shadow-light);
+}
+
+html[data-theme="light"] .nav-bar.scrolled {
+  background: rgba(254, 252, 249, 0.98);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.06);
+}
