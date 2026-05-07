@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
       'assets/logo-oceana-main.png',
       'assets/mapa-mental.png',
       'assets/mind-map.png',
-      'assets/mind-map-2.png',
-      'assets/unnamed-2.png'
+      'assets/unnamed.png'
     ],
     audios: [
       'assets/audio-hoteles-bunker.m4a',
@@ -17,8 +16,6 @@ document.addEventListener('DOMContentLoaded', function(){
     ],
     videos: [
       'assets/video-propuesta-valor.mp4',
-      'assets/video-proyecto-oceana.mp4',
-      'assets/video-presentacion.mp4',
       'assets/video-proyecto-estrategico.mp4'
     ]
   };
