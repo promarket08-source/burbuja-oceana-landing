@@ -1,0 +1,9 @@
+# Ignore large media files - hosted on GitHub LFS
+assets/*.mp4
+assets/*.m4a
+*.mp4
+*.m4a
+node_modules/
+.git/
+.gitignore
+.gitattributes
