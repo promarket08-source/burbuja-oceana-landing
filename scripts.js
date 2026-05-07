@@ -17,10 +17,6 @@ document.addEventListener('DOMContentLoaded', function(){
     ],
     audios: [
       'assets/audio-modernizacion-sustentable.m4a'
-    ],
-    videos: [
-      'assets/video-propuesta-valor.mp4',
-      'assets/video-proyecto-estrategico.mp4'
     ]
   };
   // Render images
@@ -34,14 +30,14 @@ document.addEventListener('DOMContentLoaded', function(){
   assets.audios.forEach(src => {
     const wrap = document.createElement('div');
     wrap.className = 'media-item media-audio';
-    wrap.innerHTML = `<figure><figcaption>Audio</figcaption><audio controls preload="none"><source src="${src}" type="audio/mpeg"></audio></figure>`;
+    wrap.innerHTML = `<figure><figcaption>Audio</figcaption><audio controls preload="none"><source src="${src}" type="audio/mp4"></audio></figure>`;
     galeria.appendChild(wrap);
   });
   // Render videos
   assets.videos.forEach(src => {
     const wrap = document.createElement('div');
     wrap.className = 'media-item media-video';
-    wrap.innerHTML = `<video controls preload="none" poster="assets/images/img_local_1.svg"><source src="${src}" type="video/mp4"></video>`;
+    wrap.innerHTML = `<video controls preload="none" poster="assets/logo-burbuja.png"><source src="${src}" type="video/mp4"></video>`;
     galeria.appendChild(wrap);
   });
 });
