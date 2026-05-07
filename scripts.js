@@ -7,15 +7,19 @@ document.addEventListener('DOMContentLoaded', function(){
       'assets/logo-burbuja.png',
       'assets/logo-oceana-main.png',
       'assets/mapa-mental.png',
-      'assets/mind-map.png'
+      'assets/mind-map.png',
+      'assets/mind-map-2.png',
+      'assets/unnamed-2.png'
     ],
     audios: [
-      'assets/audio-hoteles-bunker.m4a'
+      'assets/audio-hoteles-bunker.m4a',
+      'assets/audio-modernizacion-sustentable.m4a'
     ],
     videos: [
       'assets/video-propuesta-valor.mp4',
       'assets/video-proyecto-oceana.mp4',
-      'assets/video-presentacion.mp4'
+      'assets/video-presentacion.mp4',
+      'assets/video-proyecto-estrategico.mp4'
     ]
   };
   // Render images
