@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Burbuja presenta Proyecto Oceana - Transformando la experiencia de hospedaje con identidad local y sostenibilidad" />
+    <title>Burbuja x Oceana — Proyecto de Innovación Hotelera</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root{
+        --primary: #B8422E;
+        --primary-dark: #8B2D1E;
+        --dark: #0F1117;
+        --dark-2: #1A1D27;
+        --dark-3: #252833;
+        --light: #F7F5F2;
+        --gray: #6C7278;
+        --gray-light: #E8E4DF;
+        --accent: #4ECDC4;
+        --whatsapp: #25D366;
+        --font-heading: 'Space Grotesk', sans-serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+
+      *{box-sizing:border-box;margin:0;padding:0}
+      html{scroll-behavior:smooth;overflow-x:hidden}
+      body{font-family:var(--font-body);background:var(--dark);color:var(--light);line-height:1.6;overflow-x:hidden}
+
+      .container{max-width:1200px;margin:0 auto;padding:0 40px}
+
+      /* Navigation */
+      .nav-bar{
+        position:fixed;top:0;left:0;right:0;z-index:1000;
+        background:rgba(15,17,23,0.95);backdrop-filter:blur(20px);
+        border-bottom:1px solid rgba(255,255,255,0.06);
+        transition:all 0.3s ease;
+      }
+      .nav-bar.scrolled{background:rgba(15,17,23,0.98);box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+      .nav-bar .container{display:flex;justify-content:space-between;align-items:center;height:72px;gap:24px}
+      .nav-logos{display:flex;align-items:center;gap:16px}
+      .logo-img{height:40px;width:auto;display:block}
+      .logo-separator{color:rgba(255,255,255,0.2);font-size:1.5rem;font-weight:300}
+      .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+      .nav-links a{
+        color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;font-weight:500;
+        transition:color 0.3s;position:relative;letter-spacing:0.3px;
+      }
+      .nav-links a:hover,.nav-links a.active{color:white}
+      .nav-links a::after{
+        content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;
+        background:var(--primary);transform:scaleX(0);transition:transform 0.3s;
+      }
+      .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+
+      /* WhatsApp Button in Nav */
+      .nav-whatsapp{
+        display:inline-flex;align-items:center;gap:8px;
+        background:var(--whatsapp);color:white;padding:8px 16px;
+        border-radius:100px;text-decoration:none;font-size:0.85rem;font-weight:600;
+        transition:all 0.3s;font-family:var(--font-body);
+      }
+      .nav-whatsapp:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(37,211,102,0.3)}
+      .nav-whatsapp svg{width:18px;height:18px;fill:white}
+
+      /* Slides */
+      .slide{
+        min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;
+        position:relative;overflow:hidden;
+      }
+      .slide::before{
+        content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+        background:radial-gradient(ellipse at 30% 50%, rgba(184,66,46,0.08) 0%, transparent 60%);
+        pointer-events:none;
+      }
+
+      /* Slide1: Hero */
+      #slide-1{
+        background:linear-gradient(135deg, var(--dark) 0%, #1A0F14 50%, var(--dark) 100%);
+      }
+      .hero-content{position:relative;z-index:1;text-align:center;max-width:900px;margin:0 auto}
+      .hero-badge{
+        display:inline-flex;align-items:center;gap:8px;
+        background:rgba(184,66,46,0.12);border:1px solid rgba(184,66,46,0.3);
+        padding:8px 20px;border-radius:100px;font-size:0.85rem;font-weight:600;
+        color:var(--primary);margin-bottom:32px;letter-spacing:1px;text-transform:uppercase;
+      }
+      .hero-logos{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:40px}
+      .hero-logos img{height:80px;width:auto}
+      .hero-logos .x-mark{color:rgba(255,255,255,0.3);font-size:2rem;font-weight:300}
+      .hero h1{
+        font-family:var(--font-heading);font-size:clamp(2.5rem,5vw,4.5rem);
+        font-weight:700;line-height:1.1;margin:0 0 24px;letter-spacing:-1px;
+      }
+      .hero h1 .highlight{color:var(--primary)}
+      .hero-subtitle{
+        font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,0.6);
+        max-width:700px;margin:0 auto 40px;line-height:1.7;
+      }
+      .hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+      /* Buttons */
+      .btn{
+        display:inline-flex;align-items:center;gap:10px;padding:14px 32px;
+        border-radius:8px;font-family:var(--font-heading);font-weight:600;
+        font-size:0.95rem;transition:all 0.3s;cursor:pointer;text-decoration:none;
+        border:2px solid transparent;letter-spacing:0.3px;
+      }
+      .btn-primary{
+        background:var(--primary);color:white;border-color:var(--primary);
+      }
+      .btn-primary:hover{
+        background:var(--primary-dark);border-color:var(--primary-dark);
+        transform:translateY(-2px);box-shadow:0 8px 30px rgba(184,66,46,0.35);
+      }
+      .btn-outline{
+        background:transparent;color:white;border-color:rgba(255,255,255,0.2);
+      }
+      .btn-outline:hover{border-color:white;background:rgba(255,255,255,0.05)}
+      .btn-whatsapp{
+        background:var(--whatsapp);color:white;border-color:var(--whatsapp);
+      }
+      .btn-whatsapp:hover{
+        background:#1da851;border-color:#1da851;
+        transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.35);
+      }
+
+      /* Slide2: Problem */
+      #slide-2{background:var(--dark-2)}
+      .section-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+      .section-content{position:relative;z-index:1}
+      .section-label{
+        font-size:0.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+        color:var(--primary);margin-bottom:16px;
+      }
+      .section-title{
+        font-family:var(--font-heading);font-size:clamp(2rem,3.5vw,3rem);
+        font-weight:700;line-height:1.2;margin:0 0 20px;letter-spacing:-0.5px;
+      }
+      .section-text{color:rgba(255,255,255,0.6);font-size:1.05rem;line-height:1.8;margin-bottom:32px}
+      .problem-list{list-style:none;display:grid;gap:16px;padding:0}
+      .problem-list li{
+        display:flex;gap:16px;align-items:flex-start;padding:16px;
+        background:rgba(255,255,255,0.03);border-radius:12px;
+        border:1px solid rgba(255,255,255,0.06);
+      }
+      .problem-icon{
+        width:48px;height:48px;border-radius:12px;flex-shrink:0;
+        background:rgba(184,66,46,0.15);display:flex;align-items:center;
+        justify-content:center;font-size:1.2rem;
+      }
+      .problem-list h4{font-family:var(--font-heading);font-weight:600;margin:0 0 4px;font-size:1rem}
+      .problem-list p{color:rgba(255,255,255,0.5);margin:0;font-size:0.9rem}
+
+      .video-wrapper{
+        position:relative;border-radius:16px;overflow:hidden;
+        box-shadow:0 20px 60px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1);
+      }
+      .video-wrapper video{width:100%;display:block;border-radius:16px}
+
+      /* Slide3: Solution */
+      #slide-3{background:var(--dark)}
+      .solution-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+      .solution-card{
+        background:var(--dark-2);border:1px solid rgba(255,255,255,0.08);
+        border-radius:16px;padding:32px;transition:all 0.3s;
+      }
+      .solution-card:hover{
+        border-color:rgba(184,66,46,0.3);transform:translateY(-4px);
+        box-shadow:0 12px 40px rgba(0,0,0,0.3);
+      }
+      .solution-card-icon{
+        width:56px;height:56px;border-radius:12px;margin-bottom:20px;
+        display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+        background:linear-gradient(135deg, rgba(184,66,46,0.15), rgba(78,205,196,0.15));
+      }
+      .solution-card h3{font-family:var(--font-heading);font-size:1.3rem;margin:0 0 12px;font-weight:600}
+      .solution-card p{color:rgba(255,255,255,0.6);margin:0;font-size:0.95rem;line-height:1.7}
+
+      /* Slide4: Strategic Report */
+      #slide-4{background:var(--dark-2);min-height:auto;padding:100px 0}
+      .report-wrapper{
+        background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
+        border-radius:20px;padding:48px;margin-top:40px;max-height:70vh;overflow-y:auto;
+      }
+      .report-wrapper::-webkit-scrollbar{width:8px}
+      .report-wrapper::-webkit-scrollbar-track{background:var(--dark-3);border-radius:4px}
+      .report-wrapper::-webkit-scrollbar-thumb{background:var(--primary);border-radius:4px}
+      .report-wrapper h1{
+        font-family:var(--font-heading);font-size:2rem;margin:0 0 32px;
+        padding-bottom:16px;border-bottom:2px solid rgba(255,255,255,0.1);
+      }
+      .report-wrapper h2{
+        font-family:var(--font-heading);font-size:1.5rem;margin:32px 0 16px;
+        color:var(--accent);
+      }
+      .report-wrapper h3{font-family:var(--font-heading);font-size:1.2rem;margin:24px 0 12px}
+      .report-wrapper p{color:rgba(255,255,255,0.7);line-height:1.8;margin:8px 0}
+      .report-wrapper ul,.report-wrapper ol{
+        color:rgba(255,255,255,0.7);line-height:1.8;padding-left:24px;margin:12px 0;
+      }
+      .report-wrapper li{margin-bottom:8px}
+      .report-wrapper b{color:white}
+      .report-wrapper table{
+        width:100%;border-collapse:collapse;margin:20px 0;
+        background:rgba(255,255,255,0.02);border-radius:8px;overflow:hidden;
+      }
+      .report-wrapper th,.report-wrapper td{
+        padding:14px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08);
+      }
+      .report-wrapper th{
+        background:rgba(184,66,46,0.1);color:var(--primary);font-family:var(--font-heading);
+        font-weight:600;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.5px;
+      }
+      .report-wrapper td{color:rgba(255,255,255,0.7);font-size:0.95rem}
+
+      /* Slide5: Media */
+      #slide-5{background:var(--dark)}
+      .media-showcase{margin-top:48px}
+      .media-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-bottom:32px}
+      .media-item{
+        background:var(--dark-2);border:1px solid rgba(255,255,255,0.08);
+        border-radius:16px;overflow:hidden;transition:all 0.3s;
+      }
+      .media-item:hover{border-color:rgba(184,66,46,0.3);transform:translateY(-4px)}
+      .media-item video,.media-item audio{width:100%}
+      .media-caption{padding:20px}
+      .media-caption h4{font-family:var(--font-heading);font-size:1.1rem;margin:0 0 8px}
+      .media-caption p{color:rgba(255,255,255,0.5);margin:0;font-size:0.9rem}
+
+      .images-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+      .image-item{
+        border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);
+        transition:all 0.3s;cursor:pointer;position:relative;
+      }
+      .image-item:hover{transform:scale(1.02);border-color:rgba(184,66,46,0.3)}
+      .image-item img{width:100%;height:240px;object-fit:cover;display:block}
+      .image-item .img-overlay{
+        position:absolute;top:0;left:0;right:0;bottom:0;
+        background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;
+        opacity:0;transition:opacity 0.3s;
+      }
+      .image-item:hover .img-overlay{opacity:1}
+      .img-overlay svg{width:48px;height:48px;fill:white}
+
+      /* Slide6: Roadmap */
+      #slide-6{background:var(--dark-2)}
+      .roadmap{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:48px}
+      .roadmap-item{
+        background:var(--dark);border:1px solid rgba(255,255,255,0.08);
+        border-radius:16px;padding:24px;text-align:center;position:relative;
+        transition:all 0.3s;
+      }
+      .roadmap-item:hover{border-color:var(--primary);transform:translateY(-4px)}
+      .roadmap-number{
+        width:48px;height:48px;border-radius:50%;margin:0 auto 16px;
+        background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color:white;display:flex;align-items:center;justify-content:center;
+        font-family:var(--font-heading);font-weight:700;font-size:1.2rem;
+      }
+      .roadmap-item h4{font-family:var(--font-heading);font-size:0.95rem;margin:0 0 8px;font-weight:600}
+      .roadmap-item p{color:rgba(255,255,255,0.5);margin:0;font-size:0.85rem;line-height:1.6}
+
+      /* Slide7: Contact */
+      #slide-7{background:linear-gradient(135deg, var(--dark) 0%, #1A0F14 100%)}
+
+      /* Contact Cards */
+      .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+      .contact-card{
+        background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
+        border-radius:16px;padding:32px;
+      }
+      .contact-card h3{font-family:var(--font-heading);font-size:1.3rem;margin:0 0 20px}
+      .contact-info-list{list-style:none;padding:0;display:grid;gap:16px}
+      .contact-info-list li{
+        display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.6);font-size:0.95rem;
+      }
+      .contact-info-list li svg{width:20px;height:20px;fill:var(--primary);flex-shrink:0}
+      .contact-info-list a{color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.3s}
+      .contact-info-list a:hover{color:white}
+
+      .next-steps{list-style:none;padding:0;display:grid;gap:12px;margin-top:16px}
+      .next-steps li{
+        display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.6);font-size:0.95rem;
+      }
+      .next-steps li::before{
+        content:'';width:8px;height:8px;border-radius:50%;
+        background:var(--primary);flex-shrink:0;
+      }
+
+      .contact-actions{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;justify-content:center}
+
+      /* Slide dots */
+      .slide-nav{
+        position:fixed;right:24px;top:50%;transform:translateY(-50%);
+        display:flex;flex-direction:column;gap:12px;z-index:999;
+      }
+      .slide-dot{
+        width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.2);
+        cursor:pointer;transition:all 0.3s;border:2px solid transparent;
+      }
+      .slide-dot.active{background:var(--primary);transform:scale(1.2)}
+      .slide-dot:hover{background:rgba(255,255,255,0.4)}
+
+      /* Lightbox */
+      .lightbox{
+        position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;
+        background:rgba(0,0,0,0.95);display:none;align-items:center;justify-content:center;
+        padding:40px;cursor:pointer;
+      }
+      .lightbox.active{display:flex}
+      .lightbox img{
+        max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;
+      }
+      .lightbox-close{
+        position:absolute;top:20px;right:20px;width:48px;height:48px;
+        border-radius:50%;background:rgba(255,255,255,0.1);border:none;
+        color:white;font-size:1.5rem;cursor:pointer;display:flex;
+        align-items:center;justify-content:center;transition:background 0.3s;
+      }
+      .lightbox-close:hover{background:rgba(255,255,255,0.2)}
+
+      /* Footer */
+      .footer{
+        text-align:center;padding:40px 0;
+        border-top:1px solid rgba(255,255,255,0.08);
+        color:rgba(255,255,255,0.4);font-size:0.85rem;
+      }
+
+      /* Animations */
+      .fade-up{
+        opacity:0;transform:translateY(30px);
+        transition:opacity 0.6s ease, transform 0.6s ease;
+      }
+      .fade-up.visible{opacity:1;transform:translateY(0)}
+
+      /* Responsive */
+      @media(max-width:1024px){
+        .section-grid{grid-template-columns:1fr;gap:48px}
+        .solution-cards{grid-template-columns:1fr}
+        .roadmap{grid-template-columns:repeat(3,1fr)}
+        .media-grid{grid-template-columns:1fr}
+        .images-grid{grid-template-columns:repeat(2,1fr)}
+        .contact-grid{grid-template-columns:1fr}
+      }
+      @media(max-width:768px){
+        .container{padding:0 20px}
+        .nav-links{display:none}
+        .nav-whatsapp span{display:none}
+        .slide{padding:100px 0 60px}
+        .hero h1{font-size:clamp(2rem,6vw,3rem)}
+        .hero-logos img{height:60px}
+        .roadmap{grid-template-columns:repeat(2,1fr)}
+        .images-grid{grid-template-columns:1fr}
+        .slide-nav{right:12px}
+        .report-wrapper{padding:24px;max-height:60vh}
+        .contact-actions{flex-direction:column;align-items:center}
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav-bar" id="nav-bar">
+      <div class="container">
+        <div class="nav-logos">
+          <img src="assets/logo-burbuja.png" alt="Burbuja" class="logo-img" />
+          <span class="logo-separator">×</span>
+          <img src="assets/logo-oceana-main.png" alt="Oceana" class="logo-img" onerror="this.style.display='none'" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="#slide-1" class="active">Inicio</a></li>
+          <li><a href="#slide-2">Problema</a></li>
+          <li><a href="#slide-3">Solución</a></li>
+          <li><a href="#slide-4">Informe</a></li>
+          <li><a href="#slide-5">Medios</a></li>
+          <li><a href="#slide-6">Roadmap</a></li>
+          <li><a href="#slide-7">Contacto</a></li>
+        </ul>
+        <a href="https://wa.me/56995317529?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20proyecto%20Burbuja%20x%20Oceana" 
+           class="nav-whatsapp" target="_blank" aria-label="WhatsApp Claudia">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.473-.148-.673.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.074-.149-.673-1.62-.922-2.22-.242-.579-.487-.5-.673-.51h-.545c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.626.71.226 1.355.194 1.866.118.569-.085 1.758-.719 2.006-1.413.248-.693.248-1.287.173-1.413-.074-.124-.272-.198-.57-.347zM12.047 21.75c-1.655 0-3.276-.434-4.704-1.259l-.338-.201-3.356 1.049 1.066-3.329-.221-.357C2.557 14.806 1.5 11.619 1.5 8.524 1.5 4.383 4.973 1 10.024 1c2.983 0 5.784 1.164 7.883 3.262 2.099 2.098 3.26 4.886 3.26 7.85 0 5.063-3.464 8.638-9.62 8.638zm8.486-18.409C18.72 1.756 15.896.5 12.83.5 6.863.5 2.025 5.338 2.025 11.305c0 1.746.488 3.45 1.413 4.957l-1.408 4.403 4.644-1.456c1.36.745 2.894 1.145 4.463 1.145h.003c5.968 0 10.806-4.838 10.806-10.805 0-2.884-1.123-5.598-3.158-7.644z"/></svg>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Slide dots -->
+    <div class="slide-nav" id="slide-nav">
+      <div class="slide-dot active" data-slide="1"></div>
+      <div class="slide-dot" data-slide="2"></div>
+      <div class="slide-dot" data-slide="3"></div>
+      <div class="slide-dot" data-slide="4"></div>
+      <div class="slide-dot" data-slide="5"></div>
+      <div class="slide-dot" data-slide="6"></div>
+      <div class="slide-dot" data-slide="7"></div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" aria-label="Cerrar">×</button>
+      <img src="" alt="Imagen ampliada" id="lightbox-img" />
+    </div>
+
+    <!-- Slide 1: Hero -->
+    <section id="slide-1" class="slide">
+      <div class="container">
+        <div class="hero-content fade-up">
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Presentación Ejecutiva 2026
+          </div>
+          <div class="hero-logos">
+            <img src="assets/logo-burbuja.png" alt="Burbuja" />
+            <span class="x-mark">×</span>
+            <img src="assets/logo-oceana-main.png" alt="Oceana" onerror="this.style.display='none'" />
+          </div>
+          <h1>Transformando la experiencia<br/>de <span class="highlight">Oceana</span></h1>
+          <p class="hero-subtitle">
+            Proyecto Burbuja: Una propuesta integral para transformar unidades de renta corta 
+            en experiencias de hospitalidad auténtica, sostenible y premium.
+          </p>
+          <div class="hero-cta">
+            <a href="#slide-2" class="btn btn-primary">
+              Ver Presentación
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#slide-4" class="btn btn-outline">Informe Estratégico</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Problem -->
+    <section id="slide-2" class="slide">
+      <div class="container">
+        <div class="section-grid">
+          <div class="section-content fade-up">
+            <div class="section-label">El Desafío</div>
+            <h2 class="section-title">El problema de los<br/>"Hoteles Búnker"</h2>
+            <p class="section-text">
+              La estandarización excesiva ha convertido muchas experiencias de hospedaje 
+              en espacios fríos, impersonales y desconectados de la identidad local.
+            </p>
+            <ul class="problem-list">
+              <li>
+                <div class="problem-icon">🏨</div>
+                <div>
+                  <h4>Experiencias Estandarizadas</h4>
+                  <p>Hospedajes que podrían estar en cualquier parte del mundo, sin alma ni identidad local.</p>
+                </div>
+              </li>
+              <li>
+                <div class="problem-icon">🌍</div>
+                <div>
+                  <h4>Desconexión Cultural</h4>
+                  <p>Falta de integración con productores locales y la riqueza cultural del entorno.</p>
+                </div>
+              </li>
+              <li>
+                <div class="problem-icon">♻️</div>
+                <div>
+                  <h4>Sostenibilidad Olvidada</h4>
+                  <p>Amenidades plásticas, desperdicio innecesario y cero impacto positivo en la comunidad.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="fade-up">
+            <div class="video-wrapper">
+              <video controls preload="metadata" poster="assets/unnamed.png">
+                <source src="assets/video-presentacion.mp4" type="video/mp4" />
+                Tu navegador no soporta video.
+              </video>
+            </div>
+            <p style="text-align:center;margin-top:16px;color:rgba(255,255,255,0.5);font-size:0.9rem">
+              Video: Adiós a los hoteles búnker estandarizados
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Solution -->
+    <section id="slide-3" class="slide">
+      <div class="container">
+        <div style="text-align:center;max-width:800px;margin:0 auto;">
+          <div class="section-label fade-up">Nuestra Propuesta</div>
+          <h2 class="section-title fade-up">Burbuja x Oceana</h2>
+          <p class="section-text fade-up" style="margin:0 auto 0;">
+            Una solución integral que transforma espacios estandarizados en experiencias 
+            de hospitalidad con identidad, propósito y estándar premium.
+          </p>
+        </div>
+        <div class="solution-cards">
+          <div class="solution-card fade-up">
+            <div class="solution-card-icon">🎯</div>
+            <h3>Identidad Regional</h3>
+            <p>Integración de productos locales emblemáticos como la papaya de La Serena, artesanías en piedra combarbalita y cerámica diaguita.</p>
+          </div>
+          <div class="solution-card fade-up">
+            <div class="solution-card-icon">🌱</div>
+            <h3>Sostenibilidad</h3>
+            <p>Materiales reciclados, amenidades eco-amigables y procesos que reducen el impacto ambiental fomentando la economía circular.</p>
+          </div>
+          <div class="solution-card fade-up">
+            <div class="solution-card-icon">⭐</div>
+            <h3>Estándar Premium</h3>
+            <p>Equipamiento de alta gama, atención personalizada y detalles que marcan la diferencia entre un alojamiento común y una experiencia memorable.</p>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:48px;" class="fade-up">
+          <div class="video-wrapper" style="max-width:800px;margin:0 auto;">
+            <video controls preload="metadata" poster="assets/mapa-mental.png">
+              <source src="assets/video-proyecto-oceana.mp4" type="video/mp4" />
+              Tu navegador no soporta video.
+            </video>
+          </div>
+          <p style="margin-top:16px;color:rgba(255,255,255,0.5);font-size:0.9rem">
+            Video: El Proyecto Oceana
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Strategic Report -->
+    <section id="slide-4" class="slide">
+      <div class="container" style="max-width:1000px;">
+        <div style="text-align:center;" class="fade-up">
+          <div class="section-label">Documento Completo</div>
+          <h2 class="section-title">Informe Estratégico Oceana</h2>
+          <p class="section-text" style="max-width:700px;margin:0 auto 0;">
+            Documento detallado que presenta la estrategia de incorporación de productos locales y amenidades para transformar la experiencia de hospedaje.
+          </p>
+        </div>
+        <div class="report-wrapper fade-up">
+          <h1>Informe Estratégico: Proyecto de Incorporación de Productos Locales y Amenidades (Oceana)</h1>
+
+          <h2>Resumen Ejecutivo</h2>
+          <p>
+            El presente documento detalla la estrategia de la empresa Oceana para transformar la experiencia de hospedaje en sus unidades de renta corta (Apart Hotel). El proyecto se centra en la integración de tres pilares fundamentales: <b>identidad regional, sostenibilidad y altos estándares de calidad</b>. Mediante una fase piloto en La Serena, la iniciativa busca diferenciar la marca a través del uso de productos emblemáticos como la papaya, la implementación de amenidades eco-amigables y la provisión de un equipamiento premium.
+          </p>
+
+          <h2>1. Objetivos Estratégicos</h2>
+          <ul>
+            <li><b>Identidad y Economía Local:</b> Integrar productos de la zona para fortalecer la conexión cultural y apoyar a productores regionales.</li>
+            <li><b>Calidad Superior:</b> Mejorar la presentación y los insumos en baños, cocinas y áreas comunes.</li>
+            <li><b>Sostenibilidad:</b> Adoptar materiales reciclados y ecológicos para reducir el impacto ambiental.</li>
+            <li><b>Fidelización:</b> Incrementar la satisfacción del cliente para asegurar retornos y recomendaciones.</li>
+            <li><b>Escalabilidad:</b> Replicar el modelo en otras regiones adaptándolo a la identidad local de cada destino.</li>
+          </ul>
+
+          <h2>2. Estrategia de Implementación</h2>
+          <h3>2.1. Integración de Productos Locales: Modelo La Serena</h3>
+          <ul>
+            <li><b>Gastronomía:</b> Mermeladas, dulces, confituras, jugos naturales y deshidratados de papaya.</li>
+            <li><b>Bebidas:</b> Pisco local y coctelería típica ("Serena Libre").</li>
+            <li><b>Artesanía:</b> Piedra combarbalita, cerámica diaguita y textiles locales.</li>
+          </ul>
+
+          <h3>2.2. Amenidades de Bienvenida</h3>
+          <ul>
+            <li><b>Baño:</b> Set premium en madera reciclada, velas aromáticas naturales, secadores personalizados.</li>
+            <li><b>Cocina:</b> Té, café, aceite, sal y condimentos en frascos de vidrio etiquetados por Oceana.</li>
+          </ul>
+
+          <h3>2.3. Equipamiento de Alta Calidad</h3>
+          <table>
+            <tr><th>Área</th><th>Equipamiento</th></tr>
+            <tr><td><b>Cocina</b></td><td>Cafetera, licuadora, tostadora, horno, hervidor, vajilla completa.</td></tr>
+            <tr><td><b>Estar</b></td><td>Mantas, cojines, TV con plataformas digitales.</td></tr>
+            <tr><td><b>Dormitorios</b></td><td>Ropa de cama premium, almohadas ergonómicas, batas y pantuflas.</td></tr>
+          </table>
+
+          <h2>3. Análisis del Huésped</h2>
+          <p>Perfiles: Turistas (autenticidad), Viajeros de negocios (funcionalidad), Familias (confort).</p>
+          <ul>
+            <li>Alta valoración de productos naturales y sostenibles.</li>
+            <li>Interés por experiencias sensoriales locales.</li>
+            <li>Necesidad de espacios bien equipados.</li>
+          </ul>
+
+          <h2>4. Roadmap de Implementación</h2>
+          <ol>
+            <li><b>Mes 1:</b> Identificación de productores y diseño de materiales sostenibles.</li>
+            <li><b>Mes 2:</b> Adquisición de equipamiento premium.</li>
+            <li><b>Mes 3-4:</b> Implementación física de amenidades y kits de bienvenida.</li>
+            <li><b>Mes 5:</b> Evaluación de satisfacción y ajustes operativos.</li>
+            <li><b>Mes 6+:</b> Expansión a otras zonas geográficas.</li>
+          </ol>
+
+          <h2>5. Beneficios Esperados</h2>
+          <ul>
+            <li><b>Norte Chico:</b> Aceitunas y derivados.</li>
+            <li><b>Valle del Maipo:</b> Enfoque vitivinícola.</li>
+            <li><b>Sur de Chile:</b> Miel y productos forestales.</li>
+          </ul>
+
+          <h2>Conclusión</h2>
+          <p>
+            Oceana representa una evolución hacia una hospitalidad con sentido de pertenencia. Al combinar sostenibilidad con el lujo de lo local, la empresa se posiciona como un actor clave en la promoción del patrimonio regional.
+          </p>
+
+          <div style="text-align:center;margin-top:32px;">
+            <img src="assets/mapa-mental.png" alt="Mapa Mental" class="lightbox-trigger" style="max-width:400px;border-radius:12px;display:inline-block;cursor:pointer;" />
+            <img src="assets/mind-map.png" alt="Mind Map" class="lightbox-trigger" style="max-width:400px;border-radius:12px;display:inline-block;cursor:pointer;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Media -->
+    <section id="slide-5" class="slide">
+      <div class="container">
+        <div style="text-align:center;" class="fade-up">
+          <div class="section-label">Recursos Multimedia</div>
+          <h2 class="section-title">Galería de Medios</h2>
+          <p class="section-text" style="max-width:700px;margin:0 auto 0;">
+            Videos, audio y visuales que respaldan la propuesta de valor del proyecto.
+          </p>
+        </div>
+
+        <div class="media-showcase">
+          <div class="media-grid">
+            <div class="media-item fade-up">
+              <video controls preload="metadata" poster="assets/logo-burbuja.png">
+                <source src="assets/video-propuesta-valor.mp4" type="video/mp4" />
+              </video>
+              <div class="media-caption">
+                <h4>Propuesta de Valor Oceana</h4>
+                <p>Video explicativo de la propuesta de valor</p>
+              </div>
+            </div>
+            <div class="media-item fade-up">
+              <div style="padding:40px;background:var(--dark-3);text-align:center;">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                <audio controls preload="none" style="width:100%;margin-top:16px;">
+                  <source src="assets/audio-hoteles-bunker.m4a" type="audio/mp4" />
+                </audio>
+              </div>
+              <div class="media-caption">
+                <h4>Audio: Adiós a los Hoteles Búnker</h4>
+                <p>Análisis del problema actual</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="images-grid">
+            <div class="image-item fade-up lightbox-trigger">
+              <img src="assets/mapa-mental.png" alt="Mapa Mental" />
+              <div class="img-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="image-item fade-up lightbox-trigger">
+              <img src="assets/mind-map.png" alt="NotebookLM Mind Map" />
+              <div class="img-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+            <div class="image-item fade-up lightbox-trigger">
+              <img src="assets/unnamed.png" alt="Proyecto Visual" />
+              <div class="img-overlay"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Roadmap -->
+    <section id="slide-6" class="slide">
+      <div class="container">
+        <div style="text-align:center;" class="fade-up">
+          <div class="section-label">Plan de Acción</div>
+          <h2 class="section-title">Roadmap de 6 Meses</h2>
+          <p class="section-text" style="max-width:700px;margin:0 auto 0;">
+            Cronograma estructurado para llevar el proyecto desde la conceptualización hasta la expansión.
+          </p>
+        </div>
+        <div class="roadmap">
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-number">1</div>
+            <h4>Mes 1</h4>
+            <p>Identificación de productores locales y diseño de materiales sostenibles.</p>
+          </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-number">2</div>
+            <h4>Mes 2</h4>
+            <p>Adquisición de equipamiento premium y mobiliario de alta calidad.</p>
+          </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-number">3-4</div>
+            <h4>Mes 3-4</h4>
+            <p>Implementación física de amenidades y kits de bienvenida personalizados.</p>
+          </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-number">5</div>
+            <h4>Mes 5</h4>
+            <p>Evaluación de satisfacción del huésped y ajustes operativos.</p>
+          </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-number">6</div>
+            <h4>Mes 6</h4>
+            <p>Inicio de expansión a nuevas regiones con identidad local adaptada.</p>
+          </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-number">∞</div>
+            <h4>Escalado</h4>
+            <p>Replicación del modelo en el Valle del Maipo, sur de Chile y más.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Contact -->
+    <section id="slide-7" class="slide">
+      <div class="container">
+        <div style="text-align:center;max-width:800px;margin:0 auto;" class="fade-up">
+          <div class="section-label">Siguientes Pasos</div>
+          <h2 class="section-title">¿Listo para transformar<br/>tu experiencia?</h2>
+          <p class="section-text" style="margin:0 auto 40px;">
+            Conversemos sobre cómo Burbuja puede ayudarte a implementar esta visión 
+            en tus unidades de hospedaje.
+          </p>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>Contacto Burbuja</h3>
+              <ul class="contact-info-list">
+                <li>
+                  <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                  <a href="mailto:clau.herrera.lagos@gmail.com">clau.herrera.lagos@gmail.com</a>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                  <a href="https://wa.me/56995317529?text=Hola%20Claudia%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20proyecto%20Burbuja%20x%20Oceana" target="_blank">+56 9 9531 7529</a>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  <span>La Serena, Chile</span>
+                </li>
+              </ul>
+            </div>
+            <div class="contact-card">
+              <h3>Próximos Pasos</h3>
+              <ul class="next-steps">
+                <li>Revisión del informe estratégico</li>
+                <li>Reunión de alineación</li>
+                <li>Definición de piloto en La Serena</li>
+                <li>Inicio de implementación</li>
+              </ul>
+              <div style="margin-top:24px;">
+                <a href="https://wa.me/56995317529?text=Hola%20Claudia%2C%20quiero%20agendar%20una%20reuni%C3%B3n%20sobre%20el%20proyecto%20Burbuja%20x%20Oceana" 
+                   class="btn btn-whatsapp" target="_blank">
+                  <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.473-.148-.673.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.074-.149-.673-1.62-.922-2.22-.242-.579-.487-.5-.673-.51h-.545c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.693.626.71.226 1.355.194 1.866.118.569-.085 1.758-.719 2.006-1.413.248-.693.248-1.287.173-1.413-.074-.124-.272-.198-.57-.347zM12.047 21.75c-1.655 0-3.276-.434-4.704-1.259l-.338-.201-3.356 1.049 1.066-3.329-.221-.357C2.557 14.806 1.5 11.619 1.5 8.524 1.5 4.383 4.973 1 10.024 1c2.983 0 5.784 1.164 7.883 3.262 2.099 2.098 3.26 4.886 3.26 7.85 0 5.063-3.464 8.638-9.62 8.638zm8.486-18.409C18.72 1.756 15.896.5 12.83.5 6.863.5 2.025 5.338 2.025 11.305c0 1.746.488 3.45 1.413 4.957l-1.408 4.403 4.644-1.456c1.36.745 2.894 1.145 4.463 1.145h.003c5.968 0 10.806-4.838 10.806-10.805 0-2.884-1.123-5.598-3.158-7.644z"/></svg>
+                  Contactar por WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2026 Emprende360 — Proyecto Burbuja x Oceana. Todos los derechos reservados.</p>
+        <p style="margin-top:8px;font-size:0.9rem;">
+          Impulsado por <a href="https://www.instagram.com/tu.web.pro360/?hl=en" target="_blank" style="color:var(--accent);text-decoration:none;font-weight:600;">@tu.web.pro360</a>
+        </p>
+        <p style="margin-top:4px;font-size:0.8rem;color:rgba(255,255,255,0.3);">Desarrollado con orquestación de agentes de IA</p>
+      </div>
+    </footer>
+
+    <script>
+      // Navigation scroll effect
+      const navBar = document.getElementById('nav-bar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navBar.classList.add('scrolled');
+        } else {
+          navBar.classList.remove('scrolled');
+        }
+      });
+
+      // Active nav link and slide dot
+      const sections = document.querySelectorAll('.slide[id]');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const slideDots = document.querySelectorAll('.slide-dot');
+
+      function updateActive() {
+        let current = '';
+        sections.forEach(section => {
+          const top = section.offsetTop - 200;
+          if (window.scrollY >= top) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+        slideDots.forEach(dot => {
+          dot.classList.remove('active');
+          if ('slide-' + dot.dataset.slide === current) {
+            dot.classList.add('active');
+          }
+        });
+      }
+      window.addEventListener('scroll', updateActive);
+
+      // Slide dots click
+      slideDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const slide = document.getElementById('slide-' + dot.dataset.slide);
+          if (slide) {
+            slide.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Fade-in animation
+      const fadeElements = document.querySelectorAll('.fade-up');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold:0.1 });
+      fadeElements.forEach(el => observer.observe(el));
+
+      // Smooth scroll for nav links
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Lightbox
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxClose = lightbox.querySelector('.lightbox-close');
+
+      document.querySelectorAll('.lightbox-trigger').forEach(img => {
+        img.addEventListener('click', () => {
+          const src = img.querySelector('img') ? img.querySelector('img').src : img.src;
+          lightboxImg.src = src;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      lightboxClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // ESC key to close lightbox
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    </script>
+  </body>
+</html>

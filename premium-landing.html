@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Premium — Burbuja</title>
+    <style>
+      :root{--bg:#0b0f22;--card:#12192b;--text:#e8eefc;--muted:#a9b6d3;--primary:#7c3aed;--accent:#4cc9f0}
+      *{box-sizing:border-box}
+      html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial}
+      .container{max-width:1100px;margin:0 auto;padding:0 20px}
+      header{position:sticky;top:0;background:rgba(10,12,25,.95);border-bottom:1px solid #1e2540;z-index:50}
+      header .container{display:flex;justify-content:space-between;align-items:center;height:72px}
+      .brand{font-weight:700}
+      nav a{color:#eaf0ff;text-decoration:none;margin:0 12px;font-size:0.95rem}
+      .hero{padding:72px 0;background:linear-gradient(135deg,#0b1020 0%, #1b2a50 60%);position:relative;overflow:hidden}
+      .hero h1{font-size: clamp(2rem,4vw,3.5rem); margin:0 0 12px; letter-spacing:.2px}
+      .hero p{color:var(--muted);max-width:70ch}
+      .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+      .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;color:white;background:#1f2a44;border:1px solid #2b3a6b}
+      .btn:hover{opacity:.92}
+      .btn.primary{background:linear-gradient(135deg,var(--primary),#4f46e5)}
+      .section{padding:54px 0}
+      .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+      .card{background:rgba(255,255,255,0.04);border:1px solid #2a3450;border-radius:12px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.25);}
+      .card h3{margin:6px 0 8px}
+      .card p{color:var(--muted);margin:0}
+      .icon{width:36px;height:36px;vertical-align:middle;margin-right:8px;}
+      .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+      .gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+      .agents{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+      .agent{display:flex;gap:10px;align-items:center;background:#11152a;border:1px solid #2a3450;border-radius:10px;padding:12px}
+      .avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;background:#222}
+      .timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-items:start}
+      .tl{background:#11152a;border:1px solid #2a3450;border-radius:10px;padding:10px}
+      @media (max-width: 900px){
+        .timeline{grid-template-columns:repeat(3,1fr)}
+      }
+      @media (max-width: 600px){
+        .timeline{grid-template-columns:repeat(2,1fr)}
+        .hero{padding:48px 0}
+      }
+      footer{text-align:center;padding:20px 0;border-top:1px solid #1e2540;margin-top:20px}
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container brand">
+        <span class="logo">Emprende360</span>
+        <nav aria-label="Navegación principal" class="nav">
+          <a href="/">Home</a>
+          <a href="#beneficios">Beneficios</a>
+          <a href="#galeria-premium">Galería</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero" id="top">
+        <div class="grid" style="grid-template-columns:1.2fr .8fr;gap:24px;align-items:stretch;">
+          <div class="col-left" style="min-height:320px;background:linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.08));border-radius:14px;border:1px solid #2a3450;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:14px;">
+            <h1 style="margin:0; font-size:clamp(2rem,4vw,3.5rem);">Burbuja — Proyecto Emprende360</h1>
+            <p style="color:var(--muted);margin:0 0 6px;">Landing premium para presentar el proyecto con assets locales, audio y video, orquestación de agentes y un workflow orientado a impacto real.</p>
+            <div class="cta-row" style="margin-top:8px;">
+              <a href="#galeria-premium" class="btn">Ver Galería</a>
+              <a href="#roadmap" class="btn primary">Ver Roadmap</a>
+              <a href="informe-estrategico.html" class="btn" target="_blank">Informe Oceana</a>
+            </div>
+          </div>
+          <div class="col-right" aria-label="Resumen ejecutivo" style="background:#0b1020;border:1px solid #2a3450;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;justify-content:center;">
+            <div class="icon" aria-hidden="true" style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg, #4cc9f0, #7c3aed);"></div>
+            <h3 style="margin:0;font-size:1.1rem;">Resumen estratégico</h3>
+            <p style="color:var(--muted);margin:0;">Identidad local, sostenibilidad y experiencia premium para huéspedes que buscan autenticidad.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="beneficios" class="section" style="padding-top:24px;">
+        <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+          <div class="card"><div><svg class="icon" viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 3l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-2.01L12 3z" fill="currentColor"/></svg></div><h3>Autenticidad local</h3><p>Propuesta de valor basada en productos regionales y artesanías para diferenciar la experiencia.</p></div>
+          <div class="card"><div><svg class="icon" viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 3L4 11h16L12 3zm0 4.5l5 5V19H7v-6.5l5-5z" fill="currentColor"/></svg></div><h3>Calidad premium</h3><p>Equipamiento y acabados de alta gama para confort y durabilidad.</p></div>
+          <div class="card"><div><svg class="icon" viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 2l3 6 6 1-4.5 4.5 1 6-5.5-2.9L6.5 19.5 7 13 3 9l6-1 3-6z" fill="currentColor"/></svg></div><h3>Sostenibilidad</h3><p>Materiales reciclados y procesos eco-amigables para reducir impacto ambiental.</p></div>
+        </div>
+      </section>
+
+      <section id="galeria-premium" class="section" aria-label="Galería premium">
+        <h2>Galería de Medios</h2>
+        <p>Assets locales (imágenes, audio y video) disponibles en la carpeta assets.</p>
+        <div class="gallery">
+          <img src="assets/images/img_local_1.svg" alt="Local asset 1"/>
+          <img src="assets/images/img_local_2.svg" alt="Local asset 2"/>
+          <img src="assets/images/img_local_3.svg" alt="Local asset 3"/>
+          <img src="assets/images/img_local_4.svg" alt="Local asset 4"/>
+        </div>
+        <div class="gallery" style="margin-top:14px;">
+          <video controls preload="none" poster="assets/images/img_local_1.svg" width="420">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+          </video>
+          <audio controls preload="none" style="width:100%"><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"/></audio>
+        </div>
+      </section>
+
+      <section id="roadmap" class="section" aria-label="Roadmap">
+        <h2>Roadmap (6 meses)</h2>
+        <div class="timeline" style="gap:8px;margin-top:8px;">
+          <div class="tl">Mes 1<br/>Identificar proveedores</div>
+          <div class="tl">Mes 2<br/>Adquirir equipamiento</div>
+          <div class="tl">Mes 3-4<br/>Implementación de amenidades</div>
+          <div class="tl">Mes 5<br/>Evaluación de satisfacción</div>
+          <div class="tl">Mes 6<br/>Expansión regional</div>
+          <div class="tl">Meses siguientes<br/>Ajustes y escalado</div>
+        </div>
+      </section>
+
+      <section id="contacto" class="section" aria-label="Contacto premium">
+        <h2>Contacto</h2>
+        <form class="card" style="max-width:640px; padding:16px;" method="post" action="#">
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <input placeholder="Nombre" required style="flex:1 1 200px;padding:12px;border-radius:8px;border:1px solid #2a3450;background:#0b1020;color:#fff"/>
+            <input placeholder="Email" required style="flex:1 1 250px;padding:12px;border-radius:8px;border:1px solid #2a3450;background:#0b1020;color:#fff"/>
+          </div>
+          <textarea placeholder="Mensaje" required style="width:100%;margin-top:10px;height:120px;padding:12px;border-radius:8px;border:1px solid #2a3450;background:#0b1020;color:#fff"></textarea>
+          <button class="btn primary" style="margin-top:8px;" type="submit">Enviar</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2026 Emprende360. Todos los derechos reservados.</p>
+    </footer>
+  </body>
+  </html>

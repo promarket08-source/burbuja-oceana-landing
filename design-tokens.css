@@ -1,0 +1,20 @@
+/* DESIGN.md inspired design tokens (Google's Design.md) */
+:root{
+  --ds-color-primary: #1A1C1E;
+  --ds-color-secondary: #6C7278;
+  --ds-color-tertiary: #B8422E;
+  --ds-color-neutral: #F7F5F2;
+  --ds-font-h1: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  --ds-font-body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  --ds-font-caption: 'Space Grotesk', system-ui, Roboto, Arial;
+  --ds-rounded-sm: 4px;
+  --ds-rounded-md: 8px;
+  --ds-spacing-sm: 8px;
+  --ds-spacing-md: 16px;
+}
+
+/* Optional: apply tokens to key elements for a premium look */
+body{font-family: var(--ds-font-body); color: #e8eefc; background: #0b1020;}
+.site-header{background: rgba(26,28,30,.95); border-bottom: 1px solid #3a3f57}
+.btn{font-family: var(--ds-font-body); border-radius: var(--ds-rounded-md);}
+.card{border-radius: var(--ds-rounded-md);} 

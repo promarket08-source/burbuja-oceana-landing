@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2a7fff" offset="0"/><stop stop-color="#00d4ff" offset="1"/></linearGradient></defs>
+  <rect width="600" height="400" fill="url(#g)"/>
+  <text x="50%" y="50%" text-anchor="middle" fill="#fff" font-family="Arial" font-size="34">Local Asset 1</text>
+</svg>
