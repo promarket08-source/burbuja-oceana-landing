@@ -6,54 +6,110 @@
   <title>Burbuja x Oceana | Revolucionando la Hostelería Premium</title>
   <meta name="description" content="Proyecto Burbuja x Oceana: Modernización sustentable de apart-hoteles con identidad local y tecnología premium.">
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS Config (MUST be before CDN) -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ['Playfair Display', 'Georgia', 'serif'],
-            body: ['Outfit', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-          },
-          colors: {
-            'ocean-deep': '#0a1628',
-            'ocean-dark': '#0f2847',
-            'ocean-accent': '#41c4e6',
-            'ocean-glow': '#00e5ff',
-            'coral': '#ff6b6b',
-            'success': '#4ecdc4',
-            'warning': '#ffe66d',
-          }
-        }
-      }
-    }
-  </script>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Three.js for 3D effects -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  
-  <!-- Custom styles for animations and glass morphism -->
   <style>
-    .glass {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #0a1628;
+      color: white;
+      overflow-x: hidden;
+      line-height: 1.6;
     }
     
-    .glass-lg {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border: 1px solid rgba(255,255,255,0.1);
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 20px;
+    }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+    }
+    
+    nav.scrolled {
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 15px 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .nav-links {
+      display: none;
+      gap: 30px;
+      list-style: none;
+    }
+    
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+    }
+    
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover { color: #41c4e6; }
+    
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 8px 24px;
+      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      animation: pulse 2s infinite;
     }
     
     @keyframes pulse {
@@ -61,14 +117,239 @@
       50% { opacity: 0.7; }
     }
     
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      background: linear-gradient(to right, #ffffff, #41c4e6, #00e5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 18px 48px;
+      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      color: #0a1628;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(65, 196, 230, 0.3);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(65, 196, 230, 0.5);
+    }
+    
+    .section-label {
+      display: inline-block;
+      padding: 6px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #41c4e6;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .section-text {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+    
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+    
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+    
+    .card {
+      padding: 40px;
+      transition: all 0.3s;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .image-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    
+    .image-item:hover { transform: scale(1.02); }
+    
+    .image-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .img-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .image-item:hover .img-overlay { opacity: 1; }
+    
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    
+    .lightbox.active { display: flex; }
+    
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 16px;
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .lightbox-close:hover { background: #41c4e6; }
+    
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1500;
+      box-shadow: 0 10px 30px rgba(65, 196, 230, 0.4);
+      transition: all 0.3s;
+      animation: bounce 2s infinite;
+    }
+    
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
     
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .chatbot-toggle:hover { transform: scale(1.1); }
+    
+    .chatbot-panel {
+      display: none;
+      position: fixed;
+      bottom: 120px;
+      right: 30px;
+      width: 400px;
+      max-height: 600px;
+      background: #0f2847;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      z-index: 1500;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    
+    .chatbot-panel.active { display: flex; }
+    
+    .chatbot-header {
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chatbot-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      max-height: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .message {
+      padding: 12px 16px;
+      border-radius: 12px;
+      max-width: 80%;
+      animation: fadeIn 0.3s ease-out;
     }
     
     @keyframes fadeIn {
@@ -76,444 +357,385 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
-    .fade-up {
-      animation: fadeInUp 0.8s ease-out;
+    .message.bot {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
     }
     
-    .pulse { animation: pulse 2s infinite; }
-    .bounce { animation: bounce 2s infinite; }
-    .fade-in { animation: fadeIn 0.3s ease-out; }
-    
-    #three-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
+    .message.user {
+      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      color: #0a1628;
+      align-self: flex-end;
+      margin-left: auto;
     }
     
-    .content-layer { position: relative; z-index: 10; }
+    .chatbot-input {
+      padding: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 10px;
+    }
     
-    .lightbox { display: none; }
-    .lightbox.active { display: flex; }
+    .chatbot-input input {
+      flex: 1;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      outline: none;
+    }
     
-    .chatbot-panel { display: none; }
-    .chatbot-panel.active { display: flex; }
+    .chatbot-input button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      border: none;
+      border-radius: 50px;
+      color: #0a1628;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    
+    .chatbot-input button:hover { transform: scale(1.05); }
+    
+    footer {
+      padding: 60px 40px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    footer a {
+      color: #41c4e6;
+      text-decoration: none;
+    }
+    
+    footer a:hover { text-decoration: underline; }
+    
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; }
+      section { padding: 80px 20px; }
+      .grid-3, .grid-4, .image-grid { grid-template-columns: 1fr; }
+      .chatbot-panel { width: calc(100% - 40px); right: 20px; }
+    }
   </style>
 </head>
-
-<body class="font-body bg-ocean-deep text-white overflow-x-hidden">
-  <!-- 3D Canvas -->
-  <canvas id="three-canvas"></canvas>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="logo">BURBUJA x OCEANA</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#problema">Problema</a></li>
+      <li><a href="#solucion">Solución</a></li>
+      <li><a href="#medios">Medios</a></li>
+      <li><a href="#proyecciones">Proyecciones</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
   
-  <!-- Content Layer -->
-  <div class="content-layer">
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-[1000] p-5 md:px-10 flex justify-between items-center transition-all duration-300">
-      <div class="font-heading text-2xl font-bold bg-gradient-to-r from-ocean-accent to-ocean-glow bg-clip-text text-transparent">
-        BURBUJA x OCEANA
-      </div>
-      <ul class="hidden md:flex gap-8 list-none">
-        <li><a href="#hero" class="text-white/70 hover:text-ocean-accent transition-colors">Inicio</a></li>
-        <li><a href="#problema" class="text-white/70 hover:text-ocean-accent transition-colors">Problema</a></li>
-        <li><a href="#solucion" class="text-white/70 hover:text-ocean-accent transition-colors">Solución</a></li>
-        <li><a href="#medios" class="text-white/70 hover:text-ocean-accent transition-colors">Medios</a></li>
-        <li><a href="#proyecciones" class="text-white/70 hover:text-ocean-accent transition-colors">Proyecciones</a></li>
-        <li><a href="#contacto" class="text-white/70 hover:text-ocean-accent transition-colors">Contacto</a></li>
-      </ul>
-    </nav>
-    
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center justify-center text-center relative p-5 md:px-10">
-      <div class="max-w-4xl mx-auto fade-up">
-        <div class="inline-block px-6 py-2 bg-gradient-to-r from-ocean-accent to-ocean-glow rounded-full text-sm font-semibold mb-8 pulse">
-          🏨 Hostelería Premium Reinventada
-        </div>
-        <h1 class="font-heading text-5xl md:text-8xl font-black leading-tight mb-8 bg-gradient-to-r from-white via-ocean-accent to-ocean-glow bg-clip-text text-transparent">
-          Burbuja x Oceana<br>El Futuro es Ahora
-        </h1>
-        <p class="text-lg md:text-xl text-white/70 mb-10 leading-relaxed">
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge">🏨 Hostelería Premium Reinventada</div>
+        <h1 class="hero-title">Burbuja x Oceana<br>El Futuro es Ahora</h1>
+        <p class="hero-subtitle">
           Revolucionamos la experiencia hotelera con modernización sustentable, 
           identidad local y tecnología de punta. Descubre cómo transformamos 
           apart-hoteles en destinos premium únicos.
         </p>
-        <a href="#problema" class="inline-block px-12 py-4 bg-gradient-to-r from-ocean-accent to-ocean-glow text-ocean-deep font-bold rounded-full text-lg hover:shadow-lg hover:shadow-ocean-accent/30 transition-all hover:-translate-y-1">
-          Explorar Proyecto →
-        </a>
+        <a href="#problema" class="cta-button">Explorar Proyecto →</a>
       </div>
-    </section>
-    
-    <!-- Problema Section -->
-    <section id="problema" class="min-h-screen flex items-center p-5 md:px-10 py-24">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-4xl mx-auto mb-16 fade-up">
-          <div class="inline-block px-5 py-2 glass rounded-full text-sm font-semibold text-ocean-accent uppercase tracking-widest mb-6">
-            Contexto
-          </div>
-          <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6">
-            Adiós a los Hoteles Búnker
-          </h2>
-          <p class="text-lg text-white/70 leading-relaxed">
-            Los apart-hoteles tradicionales han perdido su esencia. Espacios fríos, 
-            sin identidad y carentes de experiencia. Es momento de cambiar el paradigma.
-          </p>
+    </div>
+  </section>
+  
+  <!-- Problema Section -->
+  <section id="problema">
+    <div class="container">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <div class="section-label">Contexto</div>
+        <h2 class="section-title">Adiós a los Hoteles Búnker</h2>
+        <p class="section-text" style="margin: 0 auto;">
+          Los apart-hoteles tradicionales han perdido su esencia. Espacios fríos, 
+          sin identidad y carentes de experiencia. Es momento de cambiar el paradigma.
+        </p>
+      </div>
+      
+      <div class="grid-3">
+        <div class="glass card">
+          <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 15px;">❌ El Problema</h3>
+          <p style="color: rgba(255,255,255,0.7);">Espacios estériles sin alma ni identidad local. Experiencia del cliente deficiente.</p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="glass p-10 rounded-2xl hover:-translate-y-2 transition-all hover:shadow-2xl fade-up">
-            <h3 class="font-heading text-2xl mb-4">❌ El Problema</h3>
-            <p class="text-white/70">Espacios estériles sin alma ni identidad local. Experiencia del cliente deficiente.</p>
-          </div>
-          <div class="glass p-10 rounded-2xl hover:-translate-y-2 transition-all hover:shadow-2xl fade-up">
-            <h3 class="font-heading text-2xl mb-4">💡 La Causa</h3>
-            <p class="text-white/70">Falta de visión estratégica y modernización sustentable en el sector.</p>
-          </div>
-          <div class="glass p-10 rounded-2xl hover:-translate-y-2 transition-all hover:shadow-2xl fade-up">
-            <h3 class="font-heading text-2xl mb-4">✅ La Solución</h3>
-            <p class="text-white/70">Burbuja x Oceana: Transformación integral con identidad y tecnología.</p>
-          </div>
+        <div class="glass card">
+          <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 15px;">💡 La Causa</h3>
+          <p style="color: rgba(255,255,255,0.7);">Falta de visión estratégica y modernización sustentable en el sector.</p>
+        </div>
+        <div class="glass card">
+          <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 15px;">✅ La Solución</h3>
+          <p style="color: rgba(255,255,255,0.7);">Burbuja x Oceana: Transformación integral con identidad y tecnología.</p>
         </div>
       </div>
-    </section>
-    
-    <!-- Solución Section -->
-    <section id="solucion" class="min-h-screen flex items-center p-5 md:px-10 py-24">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-4xl mx-auto mb-16 fade-up">
-          <div class="inline-block px-5 py-2 glass rounded-full text-sm font-semibold text-ocean-accent uppercase tracking-widest mb-6">
-            Propuesta
-          </div>
-          <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6">
-            Solución Burbuja
-          </h2>
-          <p class="text-lg text-white/70 leading-relaxed">
-            Modernización sustentable que integra diseño premium, identidad local y tecnología avanzada.
-          </p>
+    </div>
+  </section>
+  
+  <!-- Solución Section -->
+  <section id="solucion">
+    <div class="container">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
+        <div class="section-label">Propuesta</div>
+        <h2 class="section-title">Solución Burbuja</h2>
+        <p class="section-text" style="margin: 0 auto;">
+          Modernización sustentable que integra diseño premium, identidad local y tecnología avanzada.
+        </p>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+        <div>
+          <img src="assets/Logo_Burbujas_2_0_png_1.png" alt="Logo Burbujas" style="width: 100%; height: auto; border-radius: 16px;">
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div class="fade-up">
-            <img src="assets/Logo_Burbujas_2_0_png_1.png" alt="Logo Burbujas" class="w-full h-auto rounded-2xl">
-          </div>
-          <div class="fade-up">
-            <h3 class="font-heading text-3xl md:text-4xl mb-8">Modernización Sustentable</h3>
-            <ul class="text-white/70 space-y-4 text-lg">
-              <li class="flex items-center gap-3">✓ <span>Diseño con identidad local</span></li>
-              <li class="flex items-center gap-3">✓ <span>Tecnología premium integrada</span></li>
-              <li class="flex items-center gap-3">✓ <span>Sustentabilidad real</span></li>
-              <li class="flex items-center gap-3">✓ <span>Experiencia del cliente única</span></li>
-              <li class="flex items-center gap-3">✓ <span>Rentabilidad optimizada</span></li>
-            </ul>
-            <audio controls preload="none" class="w-full mt-10">
-              <source src="assets/Modernización_sustentable_de_los_apart_hoteles_Oceana_1.m4a" type="audio/mp4">
-            </audio>
-          </div>
+        <div>
+          <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 30px;">Modernización Sustentable</h3>
+          <ul style="color: rgba(255,255,255,0.7); line-height: 2; list-style: none;">
+            <li style="display: flex; align-items: center; gap: 12px;">✓ <span>Diseño con identidad local</span></li>
+            <li style="display: flex; align-items: center; gap: 12px;">✓ <span>Tecnología premium integrada</span></li>
+            <li style="display: flex; align-items: center; gap: 12px;">✓ <span>Sustentabilidad real</span></li>
+            <li style="display: flex; align-items: center; gap: 12px;">✓ <span>Experiencia del cliente única</span></li>
+            <li style="display: flex; align-items: center; gap: 12px;">✓ <span>Rentabilidad optimizada</span></li>
+          </ul>
+          <audio controls preload="none" style="width: 100%; margin-top: 30px;">
+            <source src="assets/Modernizacion_sustentable_de_los_apart_hoteles_Oceana_1.m4a" type="audio/mp4">
+          </audio>
         </div>
       </div>
-    </section>
-    
-    <!-- Medios Section -->
-    <section id="medios" class="min-h-screen p-5 md:px-10 py-24">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-4xl mx-auto mb-16 fade-up">
-          <div class="inline-block px-5 py-2 glass rounded-full text-sm font-semibold text-ocean-accent uppercase tracking-widest mb-6">
-            Recursos
+    </div>
+  </section>
+  
+  <!-- Medios Section -->
+  <section id="medios">
+    <div class="container">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
+        <div class="section-label">Recursos</div>
+        <h2 class="section-title">Galería de Medios</h2>
+        <p class="section-text" style="margin: 0 auto;">
+          Videos, audios e imágenes que respaldan nuestra propuesta de valor.
+        </p>
+      </div>
+      
+      <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; text-align: center; margin-bottom: 30px;">🎥 Videos</h3>
+      <div class="grid-3" style="margin-bottom: 60px;">
+        <div class="glass" style="border-radius: 16px; overflow: hidden;">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <video controls preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+              <source src="assets/Oceana__Proyecto_Estrategico_1.mp4" type="video/mp4">
+              Tu navegador no soporta video HTML5.
+            </video>
           </div>
-          <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6">
-            Galería de Medios
-          </h2>
-          <p class="text-lg text-white/70 leading-relaxed">
-            Videos, audios e imágenes que respaldan nuestra propuesta de valor.
-          </p>
-        </div>
-        
-        <!-- Videos -->
-        <h3 class="font-heading text-2xl md:text-3xl text-center mb-8">🎥 Videos</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div class="glass rounded-2xl overflow-hidden hover:scale-[1.02] transition-all fade-up">
-            <div class="relative pb-[56.25%] h-0">
-              <video controls preload="metadata" class="absolute top-0 left-0 w-full h-full object-cover">
-                <source src="assets/Oceana__Proyecto_Estratégico_1.mp4" type="video/mp4">
-                Tu navegador no soporta video HTML5.
-              </video>
-            </div>
-            <div class="p-5">
-              <h4 class="font-heading text-xl mb-2">Proyecto Estratégico Oceana</h4>
-              <p class="text-white/70 text-sm">Video completo del proyecto (38MB)</p>
-            </div>
-          </div>
-          
-          <div class="glass rounded-2xl overflow-hidden hover:scale-[1.02] transition-all fade-up">
-            <div class="relative pb-[56.25%] h-0 bg-ocean-dark flex items-center justify-center">
-              <div class="absolute text-center text-white/70">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                <p class="mt-4">Video: Propuesta de Valor<br/><small>Sube tu video a YouTube y agrega el link</small></p>
-              </div>
-            </div>
-            <div class="p-5">
-              <h4 class="font-heading text-xl mb-2">Propuesta de Valor Oceana</h4>
-              <p class="text-white/70 text-sm">Video explicativo (61MB)</p>
-            </div>
-          </div>
-          
-          <div class="glass rounded-2xl overflow-hidden hover:scale-[1.02] transition-all fade-up">
-            <div class="relative pb-[56.25%] h-0 bg-ocean-dark flex items-center justify-center">
-              <div class="absolute text-center text-white/70">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                <p class="mt-4">Video: Hoteles Búnker<br/><small>Sube tu video a YouTube y agrega el link</small></p>
-              </div>
-            </div>
-            <div class="p-5">
-              <h4 class="font-heading text-xl mb-2">Video: Adiós a los Hoteles Búnker</h4>
-              <p class="text-white/70 text-sm">Análisis del problema (46MB)</p>
-            </div>
+          <div style="padding: 20px;">
+            <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; margin-bottom: 8px;">Proyecto Estratégico Oceana</h4>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Video completo del proyecto (38MB)</p>
           </div>
         </div>
         
-        <!-- Audio -->
-        <h3 class="font-heading text-2xl md:text-3xl text-center mb-8">🎧 Audio</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
-          <div class="glass p-10 rounded-2xl text-center fade-up">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-            <h4 class="font-heading text-xl mt-4 mb-2">Modernización Sustentable</h4>
-            <audio controls preload="none" class="w-full mt-4">
-              <source src="assets/Modernización_sustentable_de_los_apart_hoteles_Oceana_1.m4a" type="audio/mp4">
-            </audio>
+        <div class="glass" style="border-radius: 16px; overflow: hidden;">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; background: #0f2847; display: flex; align-items: center; justify-content: center;">
+            <div style="position: absolute; text-align: center; color: rgba(255,255,255,0.7);">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              <p style="margin-top: 16px;">Video: Propuesta de Valor<br><small>Sube tu video a YouTube y agrega el link</small></p>
+            </div>
+          </div>
+          <div style="padding: 20px;">
+            <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; margin-bottom: 8px;">Propuesta de Valor Oceana</h4>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Video explicativo (61MB)</p>
           </div>
         </div>
         
-        <!-- Images -->
-        <h3 class="font-heading text-2xl md:text-3xl text-center mb-8">🖼️ Imágenes</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div class="image-item lightbox-trigger relative rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-all fade-up" data-src="assets/NotebookLM_Mind_Map_2.png">
-            <img src="assets/NotebookLM_Mind_Map_2.png" alt="Mapa Mental" class="w-full h-auto">
-            <div class="img-overlay absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <div class="glass" style="border-radius: 16px; overflow: hidden;">
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; background: #0f2847; display: flex; align-items: center; justify-content: center;">
+            <div style="position: absolute; text-align: center; color: rgba(255,255,255,0.7);">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              <p style="margin-top: 16px;">Video: Hoteles Búnker<br><small>Sube tu video a YouTube y agrega el link</small></p>
             </div>
           </div>
-          
-          <div class="image-item lightbox-trigger relative rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-all fade-up" data-src="assets/unnamed_3.png">
-            <img src="assets/unnamed_3.png" alt="Proyecto Visual 1" class="w-full h-auto">
-            <div class="img-overlay absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            </div>
-          </div>
-          
-          <div class="image-item lightbox-trigger relative rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-all fade-up" data-src="assets/unnamed_4.png">
-            <img src="assets/unnamed_4.png" alt="Proyecto Visual 2" class="w-full h-auto">
-            <div class="img-overlay absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            </div>
-          </div>
-          
-          <div class="image-item lightbox-trigger relative rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-all fade-up" data-src="assets/1080_x_1080px.png">
-            <img src="assets/1080_x_1080px.png" alt="Visual 1080p" class="w-full h-auto">
-            <div class="img-overlay absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            </div>
-          </div>
-          
-          <div class="image-item lightbox-trigger relative rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-all fade-up" data-src="assets/PNG_-_01_1.png">
-            <img src="assets/PNG_-_01_1.png" alt="PNG 01" class="w-full h-auto">
-            <div class="img-overlay absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            </div>
-          </div>
-          
-          <div class="image-item lightbox-trigger relative rounded-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition-all fade-up" data-src="assets/PNG_-_02.png">
-            <img src="assets/PNG_-_02.png" alt="PNG 02" class="w-full h-auto">
-            <div class="img-overlay absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Share Reports -->
-        <div class="text-center fade-up">
-          <h3 class="font-heading text-2xl md:text-3xl mb-8">📄 Informes Disponibles</h3>
-          <div class="flex flex-wrap gap-6 justify-center">
-            <a href="assets/proyecto_amenidades.pdf" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 glass rounded-full hover:bg-ocean-accent hover:text-ocean-deep transition-all">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-              Proyecto Amenidades (PDF)
-            </a>
-            <a href="assets/The_New_Oceana_Standard.pdf" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 glass rounded-full hover:bg-ocean-accent hover:text-ocean-deep transition-all">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-              The New Oceana Standard (PDF)
-            </a>
+          <div style="padding: 20px;">
+            <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; margin-bottom: 8px;">Video: Adiós a los Hoteles Búnker</h4>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Análisis del problema (46MB)</p>
           </div>
         </div>
       </div>
-    </section>
-    
-    <!-- Proyecciones Section -->
-    <section id="proyecciones" class="min-h-screen flex items-center p-5 md:px-10 py-24">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-4xl mx-auto mb-16 fade-up">
-          <div class="inline-block px-5 py-2 glass rounded-full text-sm font-semibold text-ocean-accent uppercase tracking-widest mb-6">
-            Análisis
+      
+      <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; text-align: center; margin-bottom: 30px;">🎧 Audio</h3>
+      <div class="glass" style="padding: 40px; border-radius: 16px; text-align: center; max-width: 500px; margin: 0 auto 60px;">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; margin: 16px 0 8px;">Modernización Sustentable</h4>
+        <audio controls preload="none" style="width: 100%; margin-top: 16px;">
+          <source src="assets/Modernizacion_sustentable_de_los_apart_hoteles_Oceana_1.m4a" type="audio/mp4">
+        </audio>
+      </div>
+      
+      <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; text-align: center; margin-bottom: 30px;">🖼️ Imágenes</h3>
+      <div class="image-grid">
+        <div class="image-item" data-src="assets/NotebookLM_Mind_Map_2.png">
+          <img src="assets/NotebookLM_Mind_Map_2.png" alt="Mapa Mental">
+          <div class="img-overlay">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
           </div>
-          <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6">
-            Proyecciones y Rentabilidad
-          </h2>
-          <p class="text-lg text-white/70 leading-relaxed">
-            Datos financieros y proyecciones para el escalamiento del proyecto.
-          </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div class="glass p-10 rounded-2xl text-center hover:-translate-y-2 transition-all fade-up">
-            <div class="text-4xl md:text-5xl font-black font-heading text-ocean-accent mb-4">$2.3B</div>
-            <div class="text-white/70">Mercado Total (TAM)<br>Chile Turismo</div>
+        <div class="image-item" data-src="assets/unnamed_3.png">
+          <img src="assets/unnamed_3.png" alt="Proyecto Visual 1">
+          <div class="img-overlay">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
           </div>
-          <div class="glass p-10 rounded-2xl text-center hover:-translate-y-2 transition-all fade-up">
-            <div class="text-4xl md:text-5xl font-black font-heading text-success mb-4">$180M</div>
-            <div class="text-white/70">Mercado Accesible (SAM)<br>Rentas Cortas</div>
+        </div>
+        
+        <div class="image-item" data-src="assets/unnamed_4.png">
+          <img src="assets/unnamed_4.png" alt="Proyecto Visual 2">
+          <div class="img-overlay">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
           </div>
-          <div class="glass p-10 rounded-2xl text-center hover:-translate-y-2 transition-all fade-up">
-            <div class="text-4xl md:text-5xl font-black font-heading text-warning mb-4">$12M</div>
-            <div class="text-white/70">Mercado Objetivo (SOM)<br>Norte de Chile</div>
+        </div>
+        
+        <div class="image-item" data-src="assets/1080_x_1080px.png">
+          <img src="assets/1080_x_1080px.png" alt="Visual 1080p">
+          <div class="img-overlay">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
           </div>
-          <div class="glass p-10 rounded-2xl text-center hover:-translate-y-2 transition-all fade-up">
-            <div class="text-4xl md:text-5xl font-black font-heading text-coral mb-4">23%</div>
-            <div class="text-white/70">Crecimiento Anual<br>Hostelería Premium</div>
+        </div>
+        
+        <div class="image-item" data-src="assets/PNG_-_01_1.png">
+          <img src="assets/PNG_-_01_1.png" alt="PNG 01">
+          <div class="img-overlay">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </div>
+        
+        <div class="image-item" data-src="assets/PNG_-_02.png">
+          <img src="assets/PNG_-_02.png" alt="PNG 02">
+          <div class="img-overlay">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
           </div>
         </div>
       </div>
-    </section>
-    
-    <!-- Contacto Section -->
-    <section id="contacto" class="min-h-screen flex items-center p-5 md:px-10 py-24">
-      <div class="max-w-7xl mx-auto text-center">
-        <div class="max-w-4xl mx-auto fade-up">
-          <div class="inline-block px-5 py-2 glass rounded-full text-sm font-semibold text-ocean-accent uppercase tracking-widest mb-6">
-            Contacto
-          </div>
-          <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6">
-            Hablemos del Proyecto
-          </h2>
-          <p class="text-lg text-white/70 mb-10 leading-relaxed">
-            ¿Listo para transformar tu negocio hotelero? Contáctanos directamente por WhatsApp.
-          </p>
-          
-          <a href="https://wa.me/569XXXXXXXX?text=Hola%20Burbuja,%20quiero%20información%20sobre%20el%20proyecto%20Oceana" class="inline-flex items-center gap-3 px-12 py-4 bg-gradient-to-r from-ocean-accent to-ocean-glow text-ocean-deep font-bold rounded-full text-lg hover:shadow-lg hover:shadow-ocean-accent/30 transition-all hover:-translate-y-1">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
-            Contactar por WhatsApp
+      
+      <div style="text-align: center; margin-top: 50px;">
+        <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; margin-bottom: 30px;">📄 Informes Disponibles</h3>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="assets/proyecto_amenidades.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; color: white; text-decoration: none; transition: all 0.3s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            Proyecto Amenidades (PDF)
           </a>
-          
-          <div class="mt-10">
-            <img src="assets/codigo-qr-2.png" alt="QR WhatsApp" class="w-40 h-auto rounded-2xl mx-auto">
-          </div>
+          <a href="assets/The_New_Oceana_Standard.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 32px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 50px; color: white; text-decoration: none; transition: all 0.3s;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            The New Oceana Standard (PDF)
+          </a>
         </div>
       </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="p-16 text-center border-t border-white/10">
-      <p>Impulsado por <a href="https://www.instagram.com/tu.web.pro360/?hl=en" target="_blank" class="text-ocean-accent hover:underline">@tu.web.pro360</a></p>
-    </footer>
-  </div>
+    </div>
+  </section>
+  
+  <!-- Proyecciones Section -->
+  <section id="proyecciones">
+    <div class="container">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
+        <div class="section-label">Análisis</div>
+        <h2 class="section-title">Proyecciones y Rentabilidad</h2>
+        <p class="section-text" style="margin: 0 auto;">
+          Datos financieros y proyecciones para el escalamiento del proyecto.
+        </p>
+      </div>
+      
+      <div class="grid-4">
+        <div class="glass card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; font-family: 'Playfair Display', Georgia, serif; color: #41c4e6; margin-bottom: 15px;">$2.3B</div>
+          <div style="color: rgba(255,255,255,0.7);">Mercado Total (TAM)<br>Chile Turismo</div>
+        </div>
+        <div class="glass card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; font-family: 'Playfair Display', Georgia, serif; color: #4ecdc4; margin-bottom: 15px;">$180M</div>
+          <div style="color: rgba(255,255,255,0.7);">Mercado Accesible (SAM)<br>Rentas Cortas</div>
+        </div>
+        <div class="glass card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; font-family: 'Playfair Display', Georgia, serif; color: #ffe66d; margin-bottom: 15px;">$12M</div>
+          <div style="color: rgba(255,255,255,0.7);">Mercado Objetivo (SOM)<br>Norte de Chile</div>
+        </div>
+        <div class="glass card" style="text-align: center;">
+          <div style="font-size: 2.5rem; font-weight: 900; font-family: 'Playfair Display', Georgia, serif; color: #ff6b6b; margin-bottom: 15px;">23%</div>
+          <div style="color: rgba(255,255,255,0.7);">Crecimiento Anual<br>Hostelería Premium</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contacto Section -->
+  <section id="contacto">
+    <div class="container">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <div class="section-label">Contacto</div>
+        <h2 class="section-title">Hablemos del Proyecto</h2>
+        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.7); margin-bottom: 40px; line-height: 1.8;">
+          ¿Listo para transformar tu negocio hotelero? Contáctanos directamente por WhatsApp.
+        </p>
+        
+        <a href="https://wa.me/569XXXXXXXX?text=Hola%20Burbuja,%20quiero%20información%20sobre%20el%20proyecto%20Oceana" class="cta-button" style="display: inline-flex; align-items: center; gap: 10px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+          Contactar por WhatsApp
+        </a>
+        
+        <div style="margin-top: 40px;">
+          <img src="assets/codigo-qr-2.png" alt="QR WhatsApp" style="width: 150px; height: auto; border-radius: 16px; margin: 0 auto;">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <p>Impulsado por <a href="https://www.instagram.com/tu.web.pro360/?hl=en" target="_blank">@tu.web.pro360</a></p>
+  </footer>
   
   <!-- Lightbox -->
-  <div id="lightbox" class="lightbox fixed top-0 left-0 w-full h-full bg-black/95 z-[2000] items-center justify-center p-10">
-    <button class="lightbox-close absolute top-8 right-8 w-12 h-12 glass rounded-full text-white text-2xl flex items-center justify-center hover:bg-ocean-accent transition-colors" onclick="document.getElementById('lightbox').classList.remove('active')">×</button>
-    <img id="lightbox-img" src="" alt="Imagen ampliada" class="max-w-[90%] max-h-[90%] rounded-2xl">
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('active')">×</button>
+    <img id="lightbox-img" src="" alt="Imagen ampliada">
   </div>
   
   <!-- Chatbot Toggle -->
-  <div id="chatbot-toggle" class="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-r from-ocean-accent to-ocean-glow rounded-full flex items-center justify-center cursor-pointer z-[1500] shadow-lg shadow-ocean-accent/40 hover:scale-110 transition-all bounce">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" class="text-ocean-deep"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></svg>
+  <div id="chatbot-toggle" class="chatbot-toggle">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" style="color: #0a1628;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></svg>
   </div>
   
   <!-- Chatbot Panel -->
-  <div id="chatbot-panel" class="chatbot-panel fixed bottom-32 right-8 w-[400px] max-h-[600px] bg-ocean-dark border border-white/10 rounded-3xl z-[1500] flex flex-col shadow-2xl">
-    <div class="p-5 border-b border-white/10 flex justify-between items-center">
-      <h3 class="font-heading text-xl">🫧 Burbuja AI</h3>
-      <button id="chatbot-close" class="bg-transparent border-none text-white/70 text-2xl cursor-pointer hover:text-white">×</button>
+  <div id="chatbot-panel" class="chatbot-panel">
+    <div class="chatbot-header">
+      <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem;">🫧 Burbuja AI</h3>
+      <button id="chatbot-close" style="background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.5rem; cursor: pointer;">×</button>
     </div>
-    <div id="chatbot-messages" class="flex-1 p-5 overflow-y-auto max-h-[400px] space-y-4">
-      <div class="fade-in p-3 glass rounded-xl max-w-[80%]">
+    <div id="chatbot-messages" class="chatbot-messages">
+      <div class="message bot">
         ¡Hola! Soy Burbuja, tu asistente virtual. ¿En qué puedo ayudarte con el proyecto Oceana?
       </div>
     </div>
-    <div class="p-5 border-t border-white/10 flex gap-3">
-      <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta..." class="flex-1 p-3 glass rounded-full text-white outline-none font-body">
-      <button id="chatbot-send" class="px-6 py-3 bg-gradient-to-r from-ocean-accent to-ocean-glow text-ocean-deep font-bold rounded-full hover:scale-105 transition-all">Enviar</button>
+    <div class="chatbot-input">
+      <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
+      <button id="chatbot-send">Enviar</button>
     </div>
   </div>
   
   <script>
-    // 3D Background - PROPER SYNTAX WITH ALL COMMAS
-    try {
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ 
-        canvas: document.getElementById('three-canvas'), 
-        alpha: true 
-      });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      
-      // Create floating bubbles
-      const bubbles = [];
-      const bubbleGeometry = new THREE.SphereGeometry(0.1, 32, 32);
-      const bubbleMaterial = new THREE.MeshBasicMaterial({ 
-        color: 0x41c4e6, 
-        transparent: true, 
-        opacity: 0.3 
-      });
-      
-      for (let i = 0; i < 50; i++) {
-        const bubble = new THREE.Mesh(bubbleGeometry, bubbleMaterial);
-        bubble.position.x = (Math.random() - 0.5) * 10;
-        bubble.position.y = (Math.random() - 0.5) * 10;
-        bubble.position.z = (Math.random() - 0.5) * 10;
-        bubble.userData.speed = Math.random() * 0.02;
-        scene.add(bubble);
-        bubbles.push(bubble);
-      }
-      
-      camera.position.z = 5;
-      
-      function animate() {
-        requestAnimationFrame(animate);
-        
-        bubbles.forEach(bubble => {
-          bubble.position.y += bubble.userData.speed;
-          if (bubble.position.y > 5) bubble.position.y = -5;
-          bubble.rotation.x += 0.01;
-          bubble.rotation.y += 0.01;
-        });
-        
-        renderer.render(scene, camera);
-      }
-      animate();
-      
-      // Resize handler
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    } catch (e) {
-      console.error('Three.js error:', e);
-    }
-    
     // Navbar scroll effect
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', function() {
       const navbar = document.getElementById('navbar');
       if (window.scrollY > 100) {
-        navbar.classList.add('bg-ocean-deep/95', 'backdrop-blur-xl', 'py-3', 'shadow-2xl');
-        navbar.classList.remove('p-5');
+        navbar.classList.add('scrolled');
       } else {
-        navbar.classList.remove('bg-ocean-deep/95', 'backdrop-blur-xl', 'py-3', 'shadow-2xl');
-        navbar.classList.add('p-5');
+        navbar.classList.remove('scrolled');
       }
     });
     
     // Lightbox
-    document.querySelectorAll('.lightbox-trigger').forEach(item => {
-      item.addEventListener('click', (event) => {
+    document.querySelectorAll('.image-item').forEach(function(item) {
+      item.addEventListener('click', function() {
         const imgSrc = item.getAttribute('data-src');
         document.getElementById('lightbox-img').src = imgSrc;
         document.getElementById('lightbox').classList.add('active');
@@ -528,11 +750,11 @@
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotMessages = document.getElementById('chatbot-messages');
     
-    chatbotToggle.addEventListener('click', () => {
+    chatbotToggle.addEventListener('click', function() {
       chatbotPanel.classList.toggle('active');
     });
     
-    chatbotClose.addEventListener('click', () => {
+    chatbotClose.addEventListener('click', function() {
       chatbotPanel.classList.remove('active');
     });
     
@@ -545,20 +767,20 @@
     };
     const defaultResponse = 'Interesante pregunta. Te recomiendo explorar las secciones de la página para más información. También puedes contactarnos por WhatsApp.';
     
-    chatbotSend.addEventListener('click', () => {
+    chatbotSend.addEventListener('click', function() {
       const userMessage = chatbotInput.value.toLowerCase();
       if (!userMessage) return;
       
       // Add user message
       const userDiv = document.createElement('div');
-      userDiv.className = 'fade-in p-3 bg-gradient-to-r from-ocean-accent to-ocean-glow text-ocean-deep rounded-xl max-w-[80%] ml-auto';
+      userDiv.className = 'message user';
       userDiv.textContent = chatbotInput.value;
       chatbotMessages.appendChild(userDiv);
       
       // Bot response
-      setTimeout(() => {
+      setTimeout(function() {
         const botDiv = document.createElement('div');
-        botDiv.className = 'fade-in p-3 glass rounded-xl max-w-[80%]';
+        botDiv.className = 'message bot';
         let response = defaultResponse;
         for (let key in botResponses) {
           if (userMessage.includes(key)) {
@@ -575,13 +797,13 @@
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     });
     
-    chatbotInput.addEventListener('keydown', (e) => {
+    chatbotInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') chatbotSend.click();
     });
     
     // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
