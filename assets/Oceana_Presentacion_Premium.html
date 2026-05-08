@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Oceana - Informe Estratégico</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a1628;
+      color: white;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #0a1628 0%, #0f2847 100%);
+      padding: 20mm;
+    }
+    
+    .header {
+      text-align: center;
+      padding: 40px 0;
+      border-bottom: 3px solid #41c4e6;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background-image: url('assets/Logo_Burbujas_2_0_png_1.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+    
+    .logo-title {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: rgba(65, 196, 230, 0.1);
+      border: 1px solid rgba(65, 196, 230, 0.3);
+      border-radius: 50px;
+      color: #41c4e6;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      border-left: 4px solid #41c4e6;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      color: #41c4e6;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-style: italic;
+    }
+    
+    .section p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    
+    .objectives-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .objective {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+    }
+    
+    .objective-number {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    
+    .objective h4 {
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    
+    .objective p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
+    }
+    
+    .timeline {
+      margin: 30px 0;
+    }
+    
+    .timeline-item {
+      padding: 20px;
+      margin-bottom: 20px;
+      padding-left: 30px;
+      border-left: 2px solid #41c4e6;
+      position: relative;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 25px;
+      width: 14px;
+      height: 14px;
+      background: #41c4e6;
+      border-radius: 50%;
+      border: 3px solid #0a1628;
+    }
+    
+    .timeline-item h4 {
+      color: #41c4e6;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    
+    .timeline-item p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    table th {
+      background: rgba(65, 196, 230, 0.1);
+      color: #41c4e6;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid rgba(65, 196, 230, 0.3);
+    }
+    
+    table td {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .contact-box {
+      background: rgba(65, 196, 230, 0.05);
+      border: 1px solid rgba(65, 196, 230, 0.2);
+      border-radius: 12px;
+      padding: 30px;
+      margin-top: 30px;
+    }
+    
+    .contact-box h3 {
+      color: #41c4e6;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .contact-item {
+      padding: 10px 0;
+      color: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 40px;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+    
+    .footer a {
+      color: #41c4e6;
+      text-decoration: none;
+    }
+    
+    @media print {
+      body {
+        background: #0a1628 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      
+      .container {
+        padding: 15mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">Informe Estratégico 2026</div>
+      <div class="logo-title">OCEANA</div>
+      <div class="subtitle">Modernización Sustentable de Apart-Hoteles</div>
+    </div>
+    
+    <div class="section">
+      <h3 class="section-title">Resumen Ejecutivo</h3>
+      <p>
+        El presente documento detalla la estrategia de <strong style="color: #41c4e6;">Oceana</strong> para transformar la experiencia de hospedaje 
+        en sus unidades de renta corta (Apart Hotel). El proyecto se centra en la integración de tres pilares fundamentales: 
+        <strong style="color: #41c4e6;">identidad regional, sostenibilidad y altos estándares de calidad</strong>.
+      </p>
+      <p>
+        Mediante una fase piloto en <strong style="color: white;">La Serena</strong>, la iniciativa busca diferenciar la marca a través del uso 
+        de productos emblemáticos como la papaya, la implementación de amenidades eco-amigables y la provisión de un 
+        equipamiento premium. El objetivo final es posicionar a Oceana como un referente en hospitalidad responsable, 
+        fomentando la economía local y maximizando la fidelización del huésped.
+      </p>
+    </div>
+    
+    <div class="section" style="border-left-color: #d4af37;">
+      <h3 class="section-title" style="color: #d4af37;">Objetivos Estratégicos</h3>
+      <div class="objectives-grid">
+        <div class="objective">
+          <div class="objective-number">01</div>
+          <h4>Identidad</h4>
+          <p>Integración con economía local</p>
+        </div>
+        <div class="objective">
+          <div class="objective-number">02</div>
+          <h4>Calidad</h4>
+          <p>Excelencia en amenidades</p>
+        </div>
+        <div class="objective">
+          <div class="objective-number">03</div>
+          <h4>Sostenibilidad</h4>
+          <p>Materiales ecológicos</p>
+        </div>
+        <div class="objective">
+          <div class="objective-number">04</div>
+          <h4>Fidelización</h4>
+          <p>Satisfacción del cliente</p>
+        </div>
+        <div class="objective">
+          <div class="objective-number">05</div>
+          <h4>Escalabilidad</h4>
+          <p>Expansión a todo Chile</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h3 class="section-title">Cronograma de Implementación (6 Meses)</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Mes 1: Diseño</h4>
+          <p>Identificación de productores y diseño de materiales sostenibles. Establecimiento de alianzas estratégicas.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Mes 2: Adquisición</h4>
+          <p>Adquisición de equipamiento: frigobares, mobiliario, electrodomésticos. Preparación logística.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Mes 3-4: Implementación</h4>
+          <p>Implementación física de amenidades y kits de bienvenida en todas las unidades del piloto.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Mes 5: Evaluación</h4>
+          <p>Evaluación inicial de satisfacción y ajustes operativos basados en feedback de huéspedes.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Mes 6+: Expansión</h4>
+          <p>Inicio de la expansión a otras zonas geográficas adaptando la identidad local de cada destino.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h3 class="section-title">Equipamiento Esencial</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Área</th>
+            <th>Equipamiento Destacado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cocina / Comedor</strong></td>
+            <td>Cafetera eléctrica y francesa, licuadora, tostadora, horno y hervidor eléctrico. Vajilla completa.</td>
+          </tr>
+          <tr>
+            <td><strong>Sala de Estar</strong></td>
+            <td>Mantas decorativas, cojines adicionales y televisor con acceso a plataformas digitales.</td>
+          </tr>
+          <tr>
+            <td><strong>Dormitorios</strong></td>
+            <td>Ropa de cama de alta calidad, almohadas ergonómicas, batas con logotipo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="section" style="border-left-color: #d4af37;">
+      <h3 class="section-title" style="color: #d4af37;">Proyección de Expansión</h3>
+      <p>La implementación no solo busca mejorar la percepción de marca, sino también generar <strong style="color: #00e5ff;">ingresos adicionales</strong> mediante la venta de productos locales dentro de las unidades.</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Zona</th>
+            <th>Productos Destacados</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Norte Chico</strong></td>
+            <td>Aceitunas y productos derivados</td>
+          </tr>
+          <tr>
+            <td><strong>Valle del Maipo</strong></td>
+            <td>Cultura vitivinícola</td>
+          </tr>
+          <tr>
+            <td><strong>Sur de Chile</strong></td>
+            <td>Miel y productos forestales</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div style="margin-top: 30px; padding: 20px; background: rgba(65, 196, 230, 0.05); border-radius: 12px; border: 1px solid rgba(65, 196, 230, 0.2);">
+        <p style="color: #41c4e6; font-size: 1rem; margin-bottom: 8px;"><strong>Inversión Inicial:</strong> $150,000 USD</p>
+        <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">
+          <strong style="color: #00e5ff;">ROI Proyectado:</strong> Rentabilidad optimizada en 5 años<br>
+          <strong style="color: #00e5ff;">Modelo:</strong> Escalable y replicable
+        </p>
+      </div>
+    </div>
+    
+    <div class="contact-box">
+      <h3>Contacto Estratégico</h3>
+      <div class="contact-item">📧 clau.herrera.lagos@gmail.com</div>
+      <div class="contact-item">📱 +56 9 9531 7529</div>
+      <div class="contact-item">📍 La Serena, Chile (Fase Piloto)</div>
+      <div style="margin-top: 20px;">
+        <a href="https://wa.me/56995317529" style="display: inline-block; padding: 15px 30px; background: #25d366; color: white; text-decoration: none; border-radius: 50px; font-weight: 600;">Contactar por WhatsApp</a>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>© 2026 Oceana. Todos los derechos reservados.</p>
+      <p>Impulsado por <a href="https://www.instagram.com/tu.web.pro360/?hl=en" target="_blank">@tu.web.pro360</a></p>
+    </div>
+  </div>
+</body>
+</html>
