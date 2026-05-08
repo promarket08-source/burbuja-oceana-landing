@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oceana | Presentación Estratégica Premium</title>
-  <meta name="description" content="Transformando la hostelería con identidad local, sostenibilidad y estándares premium. Proyecto estratégico Oceana.">
+  <title>Oceana | Informe Estratégico: Modernización de Apart-Hoteles</title>
+  <meta name="description" content="Proyecto Oceana: Transformación de la experiencia de hospedaje mediante identidad local, sostenibilidad y estándares premium.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,12 +50,6 @@
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     
-    .glass:hover {
-      border-color: rgba(65, 196, 230, 0.2);
-      transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(65, 196, 230, 0.1);
-    }
-    
     .container {
       max-width: 1400px;
       margin: 0 auto;
@@ -80,7 +74,7 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     }
     
-    nav .container {
+    .nav-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -154,18 +148,6 @@
       animation: float 8s ease-in-out infinite;
     }
     
-    .hero::after {
-      content: '';
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
-      bottom: -150px;
-      left: -150px;
-      border-radius: 50%;
-      animation: float 10s ease-in-out infinite reverse;
-    }
-    
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-40px) rotate(5deg); }
@@ -177,29 +159,43 @@
       max-width: 900px;
     }
     
+    .hero-badge {
+      display: inline-block;
+      padding: 10px 25px;
+      background: rgba(65, 196, 230, 0.1);
+      border: 1px solid rgba(65, 196, 230, 0.3);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease-out;
+    }
+    
     .hero h1 {
-      font-size: 5rem;
+      font-size: 4.5rem;
       font-weight: 900;
       line-height: 1.1;
       margin-bottom: 30px;
       background: linear-gradient(135deg, #ffffff 0%, var(--accent) 50%, var(--accent-light) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: fadeInUp 1s ease-out;
+      animation: fadeInUp 1s ease-out 0.2s backwards;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin-bottom: 50px;
+      font-weight: 300;
+      line-height: 1.8;
+      animation: fadeInUp 1s ease-out 0.4s backwards;
     }
     
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .hero-subtitle {
-      font-size: 1.4rem;
-      color: var(--text-muted);
-      margin-bottom: 50px;
-      font-weight: 300;
-      line-height: 1.8;
-      animation: fadeInUp 1s ease-out 0.2s backwards;
     }
     
     .btn-premium {
@@ -218,7 +214,7 @@
       border: none;
       cursor: pointer;
       box-shadow: 0 10px 40px rgba(65, 196, 230, 0.3);
-      animation: fadeInUp 1s ease-out 0.4s backwards;
+      animation: fadeInUp 1s ease-out 0.6s backwards;
     }
     
     .btn-premium:hover {
@@ -247,7 +243,7 @@
     }
     
     .section-title {
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       font-weight: 700;
       margin-bottom: 20px;
       background: linear-gradient(135deg, #ffffff, var(--accent));
@@ -263,11 +259,12 @@
       font-weight: 300;
     }
     
-    /* Strategic Content */
+    /* Executive Summary */
     .executive-summary {
-      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      background: linear-gradient(135deg, var(--secondary) 0%, rgba(10, 22, 40, 0.5) 100%);
       padding: 80px;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
+      border-left: 4px solid var(--accent);
     }
     
     .executive-summary h3 {
@@ -286,35 +283,25 @@
     
     .executive-summary strong {
       color: var(--accent-light);
+      font-weight: 600;
     }
     
-    /* Grid Layouts */
-    .grid-2 {
+    /* Objectives Grid */
+    .objectives-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-    }
-    
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 30px;
+      margin-top: 60px;
     }
     
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-    }
-    
-    /* Feature Cards */
-    .feature-card {
-      padding: 50px 40px;
+    .objective-card {
+      padding: 40px 30px;
+      text-align: center;
       position: relative;
       overflow: hidden;
     }
     
-    .feature-card::before {
+    .objective-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -326,41 +313,67 @@
       transition: transform 0.4s;
     }
     
-    .feature-card:hover::before {
+    .objective-card:hover::before {
       transform: scaleX(1);
     }
     
-    .feature-icon {
-      width: 70px;
-      height: 70px;
-      background: rgba(65, 196, 230, 0.1);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 25px;
-      font-size: 1.8rem;
-      border: 1px solid rgba(65, 196, 230, 0.2);
+    .objective-number {
+      font-size: 3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
     }
     
-    .feature-card h3 {
-      font-size: 1.6rem;
-      margin-bottom: 20px;
+    .objective-card h4 {
+      font-size: 1.2rem;
       color: #ffffff;
+      margin-bottom: 15px;
     }
     
-    .feature-card p {
+    .objective-card p {
       color: var(--text-muted);
-      line-height: 1.8;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
     }
     
-    .feature-card ul {
+    /* Implementation Sections */
+    .implementation-section {
+      margin-bottom: 60px;
+    }
+    
+    .implementation-section h3 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(65, 196, 230, 0.2);
+    }
+    
+    .implementation-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    
+    .implementation-text {
+      padding: 40px;
+    }
+    
+    .implementation-text h4 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    
+    .implementation-text ul {
       list-style: none;
       padding: 0;
     }
     
-    .feature-card li {
+    .implementation-text li {
       padding: 12px 0;
       padding-left: 35px;
       position: relative;
@@ -368,7 +381,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     
-    .feature-card li::before {
+    .implementation-text li::before {
       content: '→';
       position: absolute;
       left: 0;
@@ -398,14 +411,13 @@
       position: relative;
     }
     
-    .timeline-item:nth-child(odd) {
+    .timeline-item:nth-child(even) {
       flex-direction: row-reverse;
     }
     
     .timeline-content {
       width: 45%;
-      padding: 30px;
-      position: relative;
+      padding: 40px;
     }
     
     .timeline-marker {
@@ -431,44 +443,8 @@
       line-height: 1.8;
     }
     
-    /* Media Section */
-    .media-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 30px;
-    }
-    
-    .media-item {
-      padding: 30px;
-      transition: all 0.4s;
-    }
-    
-    .media-item:hover {
-      transform: translateY(-10px);
-    }
-    
-    .media-item video,
-    .media-item audio {
-      width: 100%;
-      margin-top: 20px;
-      border-radius: 12px;
-    }
-    
-    .media-item img {
-      width: 100%;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
-    
-    .media-label {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.3rem;
-      color: var(--accent);
-      margin-bottom: 15px;
-    }
-    
-    /* Tables */
-    .table-container {
+    /* Equipment Table */
+    .equipment-table {
       overflow-x: auto;
       margin-top: 40px;
     }
@@ -499,12 +475,55 @@
       background: rgba(65, 196, 230, 0.05);
     }
     
+    table td:first-child {
+      font-weight: 600;
+      color: #ffffff;
+    }
+    
+    /* Media Section */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+    
+    .media-item {
+      padding: 30px;
+      transition: all 0.4s;
+    }
+    
+    .media-item:hover {
+      transform: translateY(-10px);
+    }
+    
+    .media-label {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    
+    .media-item video,
+    .media-item audio {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
+    
+    .media-item img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+    
     /* Contact Section */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: start;
+      margin-top: 60px;
     }
     
     .contact-info {
@@ -740,17 +759,52 @@
     }
     
     /* Responsive */
+    @media (max-width: 1200px) {
+      .objectives-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
     @media (max-width: 1024px) {
-      .grid-2, .grid-3, .grid-4, .contact-grid {
+      .objectives-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .implementation-content,
+      .contact-grid {
         grid-template-columns: 1fr;
       }
       
+      .timeline::before {
+        left: 30px;
+      }
+      
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        flex-direction: row;
+        padding-left: 60px;
+      }
+      
+      .timeline-content {
+        width: 100%;
+      }
+      
+      .timeline-marker {
+        left: 30px;
+      }
+    }
+    
+    @media (max-width: 768px) {
       .hero h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
       }
       
       .section-title {
         font-size: 2.5rem;
+      }
+      
+      .objectives-grid {
+        grid-template-columns: 1fr;
       }
       
       .nav-links {
@@ -759,6 +813,10 @@
       
       .container {
         padding: 0 20px;
+      }
+      
+      .executive-summary {
+        padding: 40px;
       }
       
       .chatbot-panel {
@@ -771,28 +829,31 @@
 <body>
   <nav id="navbar">
     <div class="container">
-      <div class="logo">OCEANA</div>
-      <ul class="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#estrategia">Estrategia</a></li>
-        <li><a href="#implementacion">Implementación</a></li>
-        <li><a href="#medios">Medios</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
+      <div class="nav-content">
+        <div class="logo">OCEANA</div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#estrategia">Estrategia</a></li>
+          <li><a href="#implementacion">Implementación</a></li>
+          <li><a href="#medios">Medios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
   <section class="hero" id="inicio">
     <div class="container">
       <div class="hero-content">
-        <h1>Revolucionando<br>la Hostelería<br>Premium</h1>
+        <div class="hero-badge">Informe Estratégico 2026</div>
+        <h1>Modernización<br>Sustentable de<br>Apart-Hoteles</h1>
         <p class="hero-subtitle">
-          Transformamos la experiencia de hospedaje mediante la integración de identidad regional, 
-          sostenibilidad y altos estándares de calidad. Un proyecto estratégico que redefine 
-          el concepto de hospitalidad responsable.
+          Transformamos la experiencia de hospedaje mediante la integración de <strong>identidad regional</strong>, 
+          <strong>sostenibilidad</strong> y <strong>altos estándares de calidad</strong>. 
+          Un proyecto estratégico que redefine el concepto de hospitalidad responsable.
         </p>
         <a href="#estrategia" class="btn-premium">
-          <span>Descubrir Proyecto</span>
+          <span>Explorar Proyecto</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
         </a>
       </div>
@@ -807,43 +868,50 @@
         <p class="section-subtitle">Modernización de Apart-Hoteles con Identidad Local y Visión Sustentable</p>
       </div>
       
-      <div class="executive-summary glass">
+      <div class="executive-summary">
         <h3>Resumen Ejecutivo</h3>
         <p>
           El presente documento detalla la estrategia de <strong>Oceana</strong> para transformar la experiencia de hospedaje 
-          en sus unidades de renta corta. El proyecto se centra en la integración de tres pilares fundamentales: 
+          en sus unidades de renta corta (Apart Hotel). El proyecto se centra en la integración de tres pilares fundamentales: 
           <strong>identidad regional, sostenibilidad y altos estándares de calidad</strong>.
         </p>
         <p>
           Mediante una fase piloto en <strong>La Serena</strong>, la iniciativa busca diferenciar la marca a través del uso 
           de productos emblemáticos como la papaya, la implementación de amenidades eco-amigables y la provisión de un 
-          equipamiento premium. El objetivo final es posicionar a Oceana como un referente en hospitalidad responsable.
+          equipamiento premium. El objetivo final es posicionar a Oceana como un referente en hospitalidad responsable, 
+          fomentando la economía local y maximizando la fidelización del huésped.
         </p>
       </div>
 
-      <div class="grid-2">
-        <div class="feature-card glass">
-          <div class="feature-icon">🎯</div>
-          <h3>Objetivos Estratégicos</h3>
-          <ul>
-            <li>Identidad y Economía Local</li>
-            <li>Calidad Superior en Servicios</li>
-            <li>Sostenibilidad Ambiental</li>
-            <li>Fidelización del Huésped</li>
-            <li>Escalabilidad del Modelo</li>
-          </ul>
+      <div class="objectives-grid">
+        <div class="objective-card glass">
+          <div class="objective-number">01</div>
+          <h4>Identidad y Economía Local</h4>
+          <p>Integrar productos de la zona para fortalecer la conexión cultural y apoyar a productores regionales.</p>
         </div>
         
-        <div class="feature-card glass">
-          <div class="feature-icon">🚀</div>
-          <h3>Estrategia de Implementación</h3>
-          <ul>
-            <li>Integración de Productos Locales</li>
-            <li>Amenidades de Bienestar Premium</li>
-            <li>Equipamiento de Alta Calidad</li>
-            <li>Alianzas Estratégicas Sólidas</li>
-            <li>Cronograma Estructurado</li>
-          </ul>
+        <div class="objective-card glass">
+          <div class="objective-number">02</div>
+          <h4>Calidad Superior</h4>
+          <p>Mejorar la presentación y los insumos en baños, cocinas y áreas comunes con estándares premium.</p>
+        </div>
+        
+        <div class="objective-card glass">
+          <div class="objective-number">03</div>
+          <h4>Sostenibilidad</h4>
+          <p>Adoptar materiales reciclados y ecológicos para reducir el impacto ambiental.</p>
+        </div>
+        
+        <div class="objective-card glass">
+          <div class="objective-number">04</div>
+          <h4>Fidelización</h4>
+          <p>Incrementar la satisfacción del cliente para asegurar retornos y recomendaciones.</p>
+        </div>
+        
+        <div class="objective-card glass">
+          <div class="objective-number">05</div>
+          <h4>Escalabilidad</h4>
+          <p>Iniciar en La Serena para luego replicar el modelo en otras regiones, adaptándolo a cada destino.</p>
         </div>
       </div>
     </div>
@@ -853,77 +921,125 @@
     <div class="container">
       <div class="section-header">
         <span class="section-label">Plan de Acción</span>
-        <h2 class="section-title">Implementación Estratégica</h2>
+        <h2 class="section-title">Estrategia de Implementación</h2>
         <p class="section-subtitle">Transformando la Experiencia del Huésped en 6 Meses</p>
       </div>
       
-      <div class="grid-3">
-        <div class="feature-card glass">
-          <div class="feature-icon">🍑</div>
-          <h3>Productos Locales</h3>
-          <p>
-            Integración de la papaya como eje central en La Serena: mermeladas, dulces, jugos naturales y pisco local. 
-            Inclusión de artesanía en piedra combarbalita, cerámica diaguita y textiles regionales.
-          </p>
-        </div>
-        
-        <div class="feature-card glass">
-          <div class="feature-icon">🛁</div>
-          <h3>Amenidades Premium</h3>
-          <p>
-            Sets de bienvenida en madera reciclada con velas aromáticas naturales. Accesorios de higiene premium, 
-            condimentos presentados en frascos de vidrio etiquetados y guías de origen detalladas.
-          </p>
-        </div>
-        
-        <div class="feature-card glass">
-          <div class="feature-icon">🏠</div>
-          <h3>Equipamiento Completo</h3>
-          <p>
-            Cocinas con cafetera eléctrica y francesa, licuadora, tostadora y horno. Salas con Smart TV y plataformas 
-            digitales. Dormitorios con ropa de cama de alta calidad y batas con logotipo.
-          </p>
+      <div class="implementation-section">
+        <h3>2.1. Integración de Productos Locales: El Modelo La Serena</h3>
+        <div class="implementation-content">
+          <div class="implementation-text glass">
+            <h4>Gastronomía y Bebidas</h4>
+            <ul>
+              <li>Mermeladas, dulces, confituras, jugos naturales y deshidratados</li>
+              <li>Pisco local y coctelería típica (ej. "Serena Libre")</li>
+              <li>Snacks gourmet de la zona</li>
+            </ul>
+          </div>
+          <div class="implementation-text glass">
+            <h4>Artesanía y Cultura</h4>
+            <ul>
+              <li>Piezas en piedra combarbalita</li>
+              <li>Cerámica diaguita y textiles</li>
+              <li>Logística de Stock: Frigobar y gaveta con llave</li>
+            </ul>
+          </div>
         </div>
       </div>
-
-      <div class="table-container glass" style="margin-top: 60px; padding: 40px;">
-        <h3 style="color: var(--accent); margin-bottom: 30px; font-size: 1.8rem;">Cronograma de Implementación</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Fase</th>
-              <th>Mes</th>
-              <th>Actividades Clave</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Diseño</strong></td>
-              <td>Mes 1</td>
-              <td>Identificación de productores y diseño de materiales sostenibles</td>
-            </tr>
-            <tr>
-              <td><strong>Adquisición</strong></td>
-              <td>Mes 2</td>
-              <td>Adquisición de equipamiento: frigobares, mobiliario, electrodomésticos</td>
-            </tr>
-            <tr>
-              <td><strong>Implementación</strong></td>
-              <td>Mes 3-4</td>
-              <td>Implementación física de amenidades y kits de bienvenida</td>
-            </tr>
-            <tr>
-              <td><strong>Evaluación</strong></td>
-              <td>Mes 5</td>
-              <td>Evaluación inicial de satisfacción y ajustes operativos</td>
-            </tr>
-            <tr>
-              <td><strong>Expansión</strong></td>
-              <td>Mes 6+</td>
-              <td>Inicio de expansión a otras zonas geográficas adaptando identidad local</td>
-            </tr>
-          </tbody>
-        </table>
+      
+      <div class="implementation-section">
+        <h3>2.2. Amenidades de Bienvenida y Bienestar</h3>
+        <div class="implementation-content">
+          <div class="implementation-text glass">
+            <h4>Baño Premium</h4>
+            <ul>
+              <li>Set premium sobre tablas de madera reciclada</li>
+              <li>Accesorios de higiene personal y velas aromáticas naturales</li>
+              <li>Secadores de pelo con base personalizada</li>
+            </ul>
+          </div>
+          <div class="implementation-text glass">
+            <h4>Cocina Sofisticada</h4>
+            <ul>
+              <li>Transición de lo básico a lo sofisticado</li>
+              <li>Aceite, sal y condimentos en frascos de vidrio etiquetados</li>
+              <li>Guías impresas y digitales del origen de productos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="implementation-section">
+        <h3>2.3. Equipamiento Esencial de Alta Calidad</h3>
+        <div class="equipment-table glass" style="padding: 40px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Área</th>
+                <th>Equipamiento Destacado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cocina / Comedor</strong></td>
+                <td>Cafetera eléctrica y francesa, licuadora, tostadora, horno y hervidor eléctrico. Vajilla completa de calidad.</td>
+              </tr>
+              <tr>
+                <td><strong>Sala de Estar</strong></td>
+                <td>Mantas decorativas, cojines adicionales y televisor con acceso a plataformas digitales y canales nacionales.</td>
+              </tr>
+              <tr>
+                <td><strong>Dormitorios</strong></td>
+                <td>Ropa de cama de alta calidad, almohadas ergonómicas, batas con logotipo y pantuflas para cada huésped.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="implementation-section">
+        <h3>Cronograma de Implementación (6 Meses)</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content glass">
+              <h4>Mes 1: Diseño</h4>
+              <p>Identificación de productores y diseño de materiales sostenibles. Establecimiento de alianzas estratégicas.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content glass">
+              <h4>Mes 2: Adquisición</h4>
+              <p>Adquisición de equipamiento: frigobares, mobiliario, electrodomésticos. Preparación logística.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content glass">
+              <h4>Mes 3-4: Implementación</h4>
+              <p>Implementación física de amenidades y kits de bienvenida en todas las unidades del piloto.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content glass">
+              <h4>Mes 5: Evaluación</h4>
+              <p>Evaluación inicial de satisfacción y ajustes operativos basados en feedback de huéspedes.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content glass">
+              <h4>Mes 6+: Expansión</h4>
+              <p>Inicio de la expansión a otras zonas geográficas adaptando la identidad local de cada destino.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -974,7 +1090,7 @@
         </div>
       </div>
       
-      <div class="grid-3" style="margin-top: 40px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
         <div class="media-item glass">
           <img src="assets/Logo_Burbujas_2_0_png_1.png" alt="Logo Burbujas">
         </div>
@@ -1031,6 +1147,10 @@
         
         <div class="glass" style="padding: 50px;">
           <h3 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 30px;">Proyección de Expansión</h3>
+          <p style="color: var(--text-muted); line-height: 2; margin-bottom: 40px;">
+            La implementación no solo busca mejorar la percepción de marca, sino también generar 
+            <strong style="color: var(--accent-light);">ingresos adicionales</strong> mediante la venta de productos locales dentro de las unidades.
+          </p>
           <ul style="list-style: none; padding: 0;">
             <li style="padding: 15px 0; color: var(--text-muted); border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 15px;">
               <span style="font-size: 1.5rem;">🌴</span>
@@ -1202,7 +1322,7 @@
       });
     }, observerOptions);
     
-    document.querySelectorAll('.feature-card, .media-item, .executive-summary').forEach(function(el) {
+    document.querySelectorAll('.objective-card, .implementation-section, .media-item, .executive-summary').forEach(function(el) {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
       el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
