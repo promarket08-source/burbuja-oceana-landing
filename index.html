@@ -776,6 +776,115 @@
       transform: translateY(-2px);
     }
     
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+    
+    .lightbox.active {
+      display: flex;
+    }
+    
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .lightbox-close:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    
+    .mind-map-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+    
+    .mind-map-container {
+      width: 100%;
+      height: 600px;
+      position: relative;
+      margin-top: 60px;
+    }
+    
+    .mind-map-svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .mind-node {
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .mind-node:hover {
+      filter: brightness(1.2);
+    }
+    
+    .mind-node-circle {
+      fill: rgba(65, 196, 230, 0.1);
+      stroke: var(--accent);
+      stroke-width: 2;
+    }
+    
+    .mind-node:hover .mind-node-circle {
+      fill: rgba(65, 196, 230, 0.2);
+      stroke-width: 3;
+    }
+    
+    .mind-node-text {
+      fill: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    
+    .mind-node-subtext {
+      fill: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    
+    .mind-line {
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      fill: none;
+      opacity: 0.6;
+    }
+    
     /* Responsive */
     @media (max-width: 1200px) {
       .objectives-grid {
@@ -1108,17 +1217,99 @@
         </div>
       </div>
       
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
-        <div class="media-item glass">
-          <img src="assets/Logo_Burbujas_2_0_png_1.png" alt="Logo Burbujas">
-        </div>
-        <div class="media-item glass">
-          <img src="assets/unnamed_4.png" alt="Proyecto">
-        </div>
-        <div class="media-item glass">
-          <img src="assets/NotebookLM_Mind_Map_2.png" alt="Mind Map">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+          <div class="media-item glass">
+            <img src="assets/Logo_Burbujas_2_0_png_1.png" alt="Logo Burbujas" style="cursor: pointer;" onclick="openLightbox(this.src)">
+          </div>
+          <div class="media-item glass">
+            <img src="assets/unnamed_4.png" alt="Proyecto" style="cursor: pointer;" onclick="openLightbox(this.src)">
+          </div>
+          <div class="media-item glass">
+            <img src="assets/NotebookLM_Mind_Map_2.png" alt="Mind Map" style="cursor: pointer;" onclick="openLightbox(this.src)">
+            <p style="text-align: center; margin-top: 10px;"><button onclick="openLightbox('assets/NotebookLM_Mind_Map_2.png')" style="background: rgba(65, 196, 230, 0.1); border: 1px solid rgba(65, 196, 230, 0.3); color: var(--accent); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Outfit', sans-serif;">Ver Mapa Mental Completo</button></p>
+          </div>
         </div>
       </div>
+    </section>
+
+    <section class="mind-map-section" id="mapa-mental">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Visualización Estratégica</span>
+          <h2 class="section-title">Mapa Mental Interactivo</h2>
+          <p class="section-subtitle">Explora la estrategia de Oceana de forma visual y dinámica</p>
+        </div>
+        
+        <div class="glass" style="padding: 40px; margin-top: 60px;">
+          <svg class="mind-map-svg" viewBox="0 0 1200 600" style="cursor: move;">
+            <!-- Central Node -->
+            <g class="mind-node" onclick="showNodeInfo('Oceana')">
+              <circle cx="600" cy="300" r="80" class="mind-node-circle" fill="rgba(65, 196, 230, 0.15)" stroke="var(--accent)" stroke-width="3"/>
+              <text x="600" y="295" class="mind-node-text" style="font-size: 18px; font-weight: 700;">OCEANA</text>
+              <text x="600" y="315" class="mind-node-subtext" style="font-size: 12px;">Estrategia Integral</text>
+            </g>
+            
+            <!-- Objetive 1: Identidad -->
+            <g class="mind-node" onclick="showNodeInfo('Identidad')">
+              <circle cx="300" cy="150" r="50" class="mind-node-circle"/>
+              <text x="300" y="145" class="mind-node-text">Identidad</text>
+              <text x="300" y="165" class="mind-node-subtext">Local</text>
+              <line x1="520" y1="250" x2="350" y2="200" class="mind-line"/>
+            </g>
+            
+            <!-- Objetive 2: Calidad -->
+            <g class="mind-node" onclick="showNodeInfo('Calidad')">
+              <circle cx="300" cy="450" r="50" class="mind-node-circle"/>
+              <text x="300" y="445" class="mind-node-text">Calidad</text>
+              <text x="300" y="465" class="mind-node-subtext">Superior</text>
+              <line x1="520" y1="350" x2="350" y2="400" class="mind-line"/>
+            </g>
+            
+            <!-- Objetive 3: Sostenibilidad -->
+            <g class="mind-node" onclick="showNodeInfo('Sostenibilidad')">
+              <circle cx="900" cy="150" r="50" class="mind-node-circle"/>
+              <text x="900" y="145" class="mind-node-text">Sostenibilidad</text>
+              <text x="900" y="165" class="mind-node-subtext">Ambiental</text>
+              <line x1="680" y1="250" x2="850" y2="200" class="mind-line"/>
+            </g>
+            
+            <!-- Objetive 4: Fidelización -->
+            <g class="mind-node" onclick="showNodeInfo('Fidelizacion')">
+              <circle cx="900" cy="450" r="50" class="mind-node-circle"/>
+              <text x="900" y="445" class="mind-node-text">Fidelización</text>
+              <text x="900" y="465" class="mind-node-subtext">Cliente</text>
+              <line x1="680" y1="350" x2="850" y2="400" class="mind-line"/>
+            </g>
+            
+            <!-- Pilares -->
+            <g class="mind-node" onclick="showNodeInfo('Papaya')">
+              <circle cx="150" cy="300" r="40" class="mind-node-circle" fill="rgba(212, 175, 55, 0.1)" stroke="#d4af37"/>
+              <text x="150" y="295" class="mind-node-text" style="font-size: 12px;">Papaya</text>
+              <text x="150" y="310" class="mind-node-subtext">La Serena</text>
+              <line x1="250" y1="300" x2="190" y2="300" class="mind-line" stroke="#d4af37"/>
+            </g>
+            
+            <g class="mind-node" onclick="showNodeInfo('Amenidades')">
+              <circle cx="1050" cy="300" r="40" class="mind-node-circle" fill="rgba(212, 175, 55, 0.1)" stroke="#d4af37"/>
+              <text x="1050" y="295" class="mind-node-text" style="font-size: 12px;">Amenidades</text>
+              <text x="1050" y="310" class="mind-node-subtext">Premium</text>
+              <line x1="950" y1="300" x2="1010" y2="300" class="mind-line" stroke="#d4af37"/>
+            </g>
+            
+            <!-- Expansión -->
+            <g class="mind-node" onclick="showNodeInfo('Expansion')">
+              <rect x="500" cy="500" width="200" height="60" rx="30" class="mind-node-circle" fill="rgba(0, 229, 255, 0.1)" stroke="var(--accent-light)"/>
+              <text x="600" y="525" class="mind-node-text" style="font-size: 13px;">Expansión</text>
+              <text x="600" y="540" class="mind-node-subtext">6 Meses+</text>
+              <line x1="600" y1="380" x2="600" y2="500" class="mind-line" stroke-dasharray="5,5"/>
+            </g>
+          </svg>
+        </div>
+        
+        <div id="node-info" class="glass" style="padding: 30px; margin-top: 40px; display: none;">
+          <h3 id="node-title" style="color: var(--accent); font-size: 1.5rem; margin-bottom: 15px;"></h3>
+          <p id="node-description" style="color: var(--text-muted); line-height: 1.8;"></p>
+        </div>
     </div>
   </section>
 
@@ -1341,6 +1532,253 @@
     }, observerOptions);
     
     document.querySelectorAll('.objective-card, .implementation-section, .media-item, .executive-summary').forEach(function(el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      observer.observe(el);
+    });
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+    
+    .lightbox.active {
+      display: flex;
+    }
+    
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .lightbox-close:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" src="" alt="Imagen ampliada">
+  </div>
+
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <div class="logo">OCEANA</div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#estrategia">Estrategia</a></li>
+          <li><a href="#implementacion">Implementación</a></li>
+          <li><a href="#mapa-mental">Mapa Mental</a></li>
+          <li><a href="#medios">Medios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <script>
+    // Lightbox functions
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Mind map node info
+    var nodeInfo = {
+      'Oceana': {
+        title: 'Oceana - Estrategia Integral',
+        description: 'Proyecto de transformación de apart-hoteles mediante identidad regional, sostenibilidad y estándares premium. Fase piloto en La Serena.'
+      },
+      'Identidad': {
+        title: 'Identidad y Economía Local',
+        description: 'Integración de productos de la zona (papaya, artesanía) para fortalecer la conexión cultural y apoyar a productores regionales.'
+      },
+      'Calidad': {
+        title: 'Calidad Superior',
+        description: 'Mejora de la presentación y los insumos en baños, cocinas y áreas comunes con estándares premium.'
+      },
+      'Sostenibilidad': {
+        title: 'Sostenibilidad Ambiental',
+        description: 'Adopción de materiales reciclados y ecológicos para reducir el impacto ambiental y promover hospitalidad responsable.'
+      },
+      'Fidelizacion': {
+        title: 'Fidelización del Huésped',
+        description: 'Incremento de la satisfacción del cliente para asegurar retornos y recomendaciones mediante experiencias auténticas.'
+      },
+      'Papaya': {
+        title: 'Productos Locales: La Papaya',
+        description: 'Eje central del modelo La Serena: mermeladas, dulces, jugos naturales, coctelería típica y artesanía regional.'
+      },
+      'Amenidades': {
+        title: 'Amenidades Premium',
+        description: 'Sets de bienvenida en madera reciclada, velas aromáticas, accesorios de higiene y condimentos en vidrio etiquetado.'
+      },
+      'Expansion': {
+        title: 'Expansión y Escalabilidad',
+        description: 'Replicación del modelo en Norte Chico (aceitunas), Valle del Maipo (vino) y Sur de Chile (miel) adaptando la identidad local.'
+      }
+    };
+    
+    function showNodeInfo(node) {
+      var info = nodeInfo[node];
+      if (info) {
+        document.getElementById('node-title').textContent = info.title;
+        document.getElementById('node-description').textContent = info.description;
+        document.getElementById('node-info').style.display = 'block';
+        document.getElementById('node-info').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      var navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Chatbot functionality
+    var chatbotToggle = document.getElementById('chatbot-toggle');
+    var chatbotPanel = document.getElementById('chatbot-panel');
+    var chatbotClose = document.getElementById('chatbot-close');
+    var chatbotSend = document.getElementById('chatbot-send');
+    var chatbotInput = document.getElementById('chatbot-input');
+    var chatbotMessages = document.getElementById('chatbot-messages');
+    
+    chatbotToggle.addEventListener('click', function() {
+      chatbotPanel.classList.toggle('active');
+    });
+    
+    chatbotClose.addEventListener('click', function() {
+      chatbotPanel.classList.remove('active');
+    });
+    
+    chatbotSend.addEventListener('click', async function() {
+      var userMessage = chatbotInput.value.trim();
+      if (!userMessage) return;
+      
+      // Add user message
+      var userDiv = document.createElement('div');
+      userDiv.className = 'message user';
+      userDiv.textContent = userMessage;
+      chatbotMessages.appendChild(userDiv);
+      
+      // Clear input
+      chatbotInput.value = '';
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      
+      // Show typing indicator
+      var typingDiv = document.createElement('div');
+      typingDiv.className = 'message bot';
+      typingDiv.innerHTML = '<em style="color: var(--text-muted);">Burbuja está escribiendo...</em>';
+      chatbotMessages.appendChild(typingDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      
+      try {
+        // Call MCP-powered API
+        var response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: userMessage })
+        });
+        
+        var data = await response.json();
+        
+        // Remove typing indicator
+        chatbotMessages.removeChild(typingDiv);
+        
+        // Add bot response
+        var botDiv = document.createElement('div');
+        botDiv.className = 'message bot';
+        botDiv.textContent = data.response || 'Disculpa, hubo un error. Intenta de nuevo.';
+        chatbotMessages.appendChild(botDiv);
+      } catch (error) {
+        // Remove typing indicator
+        chatbotMessages.removeChild(typingDiv);
+        
+        // Add error message
+        var errorDiv = document.createElement('div');
+        errorDiv.className = 'message bot';
+        errorDiv.textContent = 'Disculpa, hubo un error de conexión. Intenta de nuevo.';
+        chatbotMessages.appendChild(errorDiv);
+      }
+      
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    });
+    
+    chatbotInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') chatbotSend.click();
+    });
+    
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+    
+    // Intersection Observer for fade-in animations
+    var observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.objective-card, .implementation-section, .media-item, .executive-summary, .mind-map-section').forEach(function(el) {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
       el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
