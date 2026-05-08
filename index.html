@@ -3,65 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oceana | Modernización Sustentable de Apart-Hoteles</title>
-  <meta name="description" content="Proyecto Oceana: Transformando la experiencia de hospedaje con identidad local, sostenibilidad y estándares premium.">
+  <title>Oceana | Presentación Estratégica Premium</title>
+  <meta name="description" content="Transformando la hostelería con identidad local, sostenibilidad y estándares premium. Proyecto estratégico Oceana.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <style>
+    :root {
+      --primary: #0a1628;
+      --secondary: #0f2847;
+      --accent: #41c4e6;
+      --accent-light: #00e5ff;
+      --gold: #d4af37;
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+    }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html {
+      scroll-behavior: smooth;
+    }
     
     body {
       font-family: 'Outfit', sans-serif;
-      background: #0a1628;
-      color: white;
+      background: var(--primary);
+      color: var(--text);
       overflow-x: hidden;
       line-height: 1.6;
+      font-weight: 300;
     }
     
-    h1, h2, h3, h4 {
+    h1, h2, h3, h4, h5 {
       font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
     }
     
     .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .glass:hover {
+      border-color: rgba(65, 196, 230, 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(65, 196, 230, 0.1);
     }
     
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 40px;
     }
     
-    section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 100px 20px;
-    }
-    
+    /* Navigation */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 2000;
-      padding: 20px;
-      transition: all 0.3s;
-      background: transparent;
+      padding: 25px 0;
+      transition: all 0.4s;
     }
     
     nav.scrolled {
       background: rgba(10, 22, 40, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 15px 20px;
-      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(30px);
+      padding: 15px 0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     }
     
     nav .container {
@@ -72,361 +88,596 @@
     
     .logo {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
     }
     
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 40px;
       list-style: none;
     }
     
     .nav-links a {
-      color: rgba(255, 255, 255, 0.8);
+      color: var(--text-muted);
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
     }
     
     .nav-links a:hover {
-      color: #41c4e6;
+      color: var(--accent);
     }
     
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #0a1628 0%, #0f2847 50%, #1a3a5c 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, #1a3a5c 100%);
     }
     
     .hero::before {
       content: '';
       position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(65, 196, 230, 0.3), transparent);
-      top: -250px;
-      right: -250px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(65, 196, 230, 0.15), transparent 70%);
+      top: -200px;
+      right: -200px;
       border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent 70%);
+      bottom: -150px;
+      left: -150px;
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite reverse;
     }
     
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-30px); }
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-40px) rotate(5deg); }
     }
     
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 800px;
+      max-width: 900px;
     }
     
     .hero h1 {
-      font-size: 4rem;
+      font-size: 5rem;
       font-weight: 900;
       line-height: 1.1;
       margin-bottom: 30px;
-      background: linear-gradient(135deg, #ffffff 0%, #41c4e6 100%);
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 50%, var(--accent-light) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: fadeInUp 1s ease-out;
     }
     
-    .hero p {
-      font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 40px;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .hero-subtitle {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      margin-bottom: 50px;
+      font-weight: 300;
       line-height: 1.8;
+      animation: fadeInUp 1s ease-out 0.2s backwards;
     }
     
-    .btn {
-      display: inline-block;
-      padding: 18px 40px;
-      background: linear-gradient(135deg, #41c4e6, #00e5ff);
-      color: #0a1628;
+    .btn-premium {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 50px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--primary);
       text-decoration: none;
-      border-radius: 50px;
+      border-radius: 60px;
       font-weight: 600;
       font-size: 1.1rem;
-      transition: all 0.3s;
+      letter-spacing: 1px;
+      transition: all 0.4s;
       border: none;
       cursor: pointer;
+      box-shadow: 0 10px 40px rgba(65, 196, 230, 0.3);
+      animation: fadeInUp 1s ease-out 0.4s backwards;
     }
     
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(65, 196, 230, 0.4);
+    .btn-premium:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(65, 196, 230, 0.5);
+    }
+    
+    /* Sections */
+    section {
+      padding: 120px 0;
+      position: relative;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .section-label {
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      display: block;
     }
     
     .section-title {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff, #41c4e6);
+      background: linear-gradient(135deg, #ffffff, var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     
     .section-subtitle {
       font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 60px;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+      font-weight: 300;
     }
     
+    /* Strategic Content */
+    .executive-summary {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+      padding: 80px;
+      margin-bottom: 40px;
+    }
+    
+    .executive-summary h3 {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+    
+    .executive-summary p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 2;
+      margin-bottom: 20px;
+    }
+    
+    .executive-summary strong {
+      color: var(--accent-light);
+    }
+    
+    /* Grid Layouts */
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 40px;
-      margin-top: 60px;
     }
     
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      margin-top: 60px;
     }
     
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    
+    /* Feature Cards */
     .feature-card {
-      padding: 40px;
-      transition: all 0.3s;
+      padding: 50px 40px;
+      position: relative;
+      overflow: hidden;
     }
     
-    .feature-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(65, 196, 230, 0.3);
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    
+    .feature-card:hover::before {
+      transform: scaleX(1);
     }
     
     .feature-icon {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       background: rgba(65, 196, 230, 0.1);
-      border-radius: 12px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      font-size: 1.5rem;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      border: 1px solid rgba(65, 196, 230, 0.2);
     }
     
     .feature-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: #ffffff;
     }
     
     .feature-card p {
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--text-muted);
       line-height: 1.8;
+      font-size: 0.95rem;
     }
     
-    .strategy-section {
-      background: linear-gradient(135deg, #0f2847 0%, #0a1628 100%);
-    }
-    
-    .content-block {
-      padding: 40px;
-      margin-bottom: 30px;
-    }
-    
-    .content-block h3 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #41c4e6;
-    }
-    
-    .content-block ul {
+    .feature-card ul {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
     }
     
-    .content-block li {
-      padding: 10px 0;
-      padding-left: 30px;
+    .feature-card li {
+      padding: 12px 0;
+      padding-left: 35px;
       position: relative;
-      color: rgba(255, 255, 255, 0.8);
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     
-    .content-block li::before {
-      content: '✓';
+    .feature-card li::before {
+      content: '→';
       position: absolute;
       left: 0;
-      color: #41c4e6;
+      color: var(--accent);
       font-weight: bold;
     }
     
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 30px;
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: 40px 0;
     }
     
-    table td {
-      padding: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, var(--accent), transparent);
     }
     
-    table td:first-child {
-      font-weight: 600;
-      color: #41c4e6;
-      width: 30%;
+    .timeline-item {
+      display: flex;
+      margin-bottom: 60px;
+      position: relative;
     }
     
-    .media-section {
-      background: #0a1628;
+    .timeline-item:nth-child(odd) {
+      flex-direction: row-reverse;
     }
     
+    .timeline-content {
+      width: 45%;
+      padding: 30px;
+      position: relative;
+    }
+    
+    .timeline-marker {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      z-index: 1;
+    }
+    
+    .timeline-content h4 {
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    
+    .timeline-content p {
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    
+    /* Media Section */
     .media-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
       gap: 30px;
-      margin-top: 60px;
     }
     
     .media-item {
-      padding: 20px;
-      transition: all 0.3s;
+      padding: 30px;
+      transition: all 0.4s;
     }
     
     .media-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
     }
     
     .media-item video,
     .media-item audio {
       width: 100%;
-      margin-top: 15px;
-      border-radius: 8px;
+      margin-top: 20px;
+      border-radius: 12px;
     }
     
     .media-item img {
       width: 100%;
-      border-radius: 8px;
-      margin-top: 15px;
+      border-radius: 12px;
+      margin-top: 20px;
     }
     
-    .contact-section {
-      background: linear-gradient(135deg, #0a1628 0%, #0f2847 100%);
+    .media-label {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 15px;
     }
     
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 40px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    table th {
+      background: rgba(65, 196, 230, 0.1);
+      color: var(--accent);
+      padding: 20px;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    
+    table td {
+      padding: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+    
+    table tr:hover td {
+      background: rgba(65, 196, 230, 0.05);
+    }
+    
+    /* Contact Section */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
-      margin-top: 60px;
+      align-items: start;
+    }
+    
+    .contact-info {
+      padding: 50px;
+    }
+    
+    .contact-info h3 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+    
+    .contact-info p {
+      color: var(--text-muted);
+      line-height: 2;
+      margin-bottom: 30px;
+    }
+    
+    .contact-details {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .contact-details li {
+      padding: 15px 0;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
     
     .whatsapp-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       background: #25d366;
       color: white;
-      padding: 18px 40px;
-      border-radius: 50px;
+      padding: 20px 50px;
+      border-radius: 60px;
       text-decoration: none;
       font-weight: 600;
       font-size: 1.1rem;
-      transition: all 0.3s;
-      margin-top: 20px;
+      transition: all 0.4s;
+      margin-top: 30px;
+      box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
     }
     
     .whatsapp-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(37, 211, 102, 0.5);
     }
     
     .qr-code {
       text-align: center;
-      margin-top: 30px;
+      padding: 40px;
     }
     
     .qr-code img {
-      width: 200px;
-      height: 200px;
-      border-radius: 12px;
+      width: 250px;
+      height: 250px;
+      border-radius: 16px;
+      border: 2px solid rgba(65, 196, 230, 0.3);
     }
     
+    /* Footer */
     footer {
-      padding: 60px 20px;
+      padding: 80px 0 40px;
       text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
     
     footer a {
-      color: #41c4e6;
+      color: var(--accent);
       text-decoration: none;
+      transition: color 0.3s;
     }
     
+    footer a:hover {
+      color: var(--accent-light);
+    }
+    
+    /* Chatbot */
     .chatbot-toggle {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      bottom: 40px;
+      right: 40px;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 1500;
-      box-shadow: 0 10px 30px rgba(65, 196, 230, 0.4);
-      transition: all 0.3s;
-      animation: bounce 2s infinite;
+      box-shadow: 0 15px 40px rgba(65, 196, 230, 0.4);
+      transition: all 0.4s;
+      animation: bounce 3s infinite;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
     
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-15px); }
     }
     
-    .chatbot-toggle:hover { transform: scale(1.1); }
+    .chatbot-toggle:hover { 
+      transform: scale(1.1);
+    }
     
     .chatbot-panel {
       display: none;
       position: fixed;
-      bottom: 120px;
-      right: 30px;
-      width: 400px;
-      max-height: 600px;
-      background: #0f2847;
+      bottom: 140px;
+      right: 40px;
+      width: 450px;
+      max-height: 700px;
+      background: var(--secondary);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 24px;
       z-index: 1500;
       flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
     }
     
     .chatbot-panel.active { display: flex; }
     
     .chatbot-header {
-      padding: 20px;
+      padding: 25px 30px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: rgba(65, 196, 230, 0.05);
+    }
+    
+    .chatbot-header h3 {
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+    
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.8rem;
+      transition: color 0.3s;
+    }
+    
+    .chatbot-close:hover {
+      color: var(--accent);
     }
     
     .chatbot-messages {
       flex: 1;
-      padding: 20px;
+      padding: 30px;
       overflow-y: auto;
-      max-height: 400px;
+      max-height: 450px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
     }
     
     .message {
-      padding: 12px 16px;
-      border-radius: 12px;
-      max-width: 80%;
+      padding: 15px 20px;
+      border-radius: 16px;
+      max-width: 85%;
       animation: fadeIn 0.3s ease-out;
+      line-height: 1.6;
     }
     
     @keyframes fadeIn {
@@ -436,56 +687,91 @@
     
     .message.bot {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text);
     }
     
     .message.user {
-      background: linear-gradient(135deg, #41c4e6, #00e5ff);
-      color: #0a1628;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: var(--primary);
       align-self: flex-end;
       margin-left: auto;
+      font-weight: 500;
     }
     
     .chatbot-input {
-      padding: 20px;
+      padding: 25px 30px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
-      gap: 10px;
+      gap: 15px;
+      background: rgba(0, 0, 0, 0.2);
     }
     
     .chatbot-input input {
       flex: 1;
-      padding: 12px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 15px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 50px;
       background: rgba(255, 255, 255, 0.05);
       color: white;
       font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+    }
+    
+    .chatbot-input input:focus {
+      outline: none;
+      border-color: var(--accent);
     }
     
     .chatbot-input button {
-      padding: 12px 24px;
-      background: linear-gradient(135deg, #41c4e6, #00e5ff);
+      padding: 15px 30px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
       border: none;
       border-radius: 50px;
-      color: #0a1628;
+      color: var(--primary);
       font-weight: 600;
       cursor: pointer;
       font-family: 'Outfit', sans-serif;
+      transition: all 0.3s;
     }
     
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
-      .grid-2, .grid-3, .contact-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .chatbot-panel { width: calc(100% - 40px); right: 20px; }
+    .chatbot-input button:hover {
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .grid-2, .grid-3, .grid-4, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .container {
+        padding: 0 20px;
+      }
+      
+      .chatbot-panel {
+        width: calc(100% - 40px);
+        right: 20px;
+      }
     }
   </style>
 </head>
 <body>
   <nav id="navbar">
     <div class="container">
-      <div class="logo">Oceana</div>
+      <div class="logo">OCEANA</div>
       <ul class="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#estrategia">Estrategia</a></li>
@@ -499,28 +785,39 @@
   <section class="hero" id="inicio">
     <div class="container">
       <div class="hero-content">
-        <h1>Revolucionando la Hostelería Premium</h1>
-        <p>Proyecto estratégico de Oceana para transformar la experiencia de hospedaje mediante la integración de identidad regional, sostenibilidad y altos estándares de calidad.</p>
-        <a href="#estrategia" class="btn">Descubrir el Proyecto</a>
+        <h1>Revolucionando<br>la Hostelería<br>Premium</h1>
+        <p class="hero-subtitle">
+          Transformamos la experiencia de hospedaje mediante la integración de identidad regional, 
+          sostenibilidad y altos estándares de calidad. Un proyecto estratégico que redefine 
+          el concepto de hospitalidad responsable.
+        </p>
+        <a href="#estrategia" class="btn-premium">
+          <span>Descubrir Proyecto</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="strategy-section" id="estrategia">
+  <section id="estrategia">
     <div class="container">
-      <h2 class="section-title">Informe Estratégico</h2>
-      <p class="section-subtitle">Modernización de Apart-Hoteles con Identidad Local</p>
+      <div class="section-header">
+        <span class="section-label">Informe Estratégico</span>
+        <h2 class="section-title">Estrategia Integral</h2>
+        <p class="section-subtitle">Modernización de Apart-Hoteles con Identidad Local y Visión Sustentable</p>
+      </div>
       
-      <div class="content-block glass">
+      <div class="executive-summary glass">
         <h3>Resumen Ejecutivo</h3>
-        <p style="color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 20px;">
-          El proyecto se centra en la integración de tres pilares fundamentales: <strong>identidad regional, sostenibilidad y altos estándares de calidad</strong>. 
-          Mediante una fase piloto en La Serena, la iniciativa busca diferenciar la marca a través del uso de productos emblemáticos como la papaya, 
-          la implementación de amenidades eco-amigables y la provisión de un equipamiento premium.
+        <p>
+          El presente documento detalla la estrategia de <strong>Oceana</strong> para transformar la experiencia de hospedaje 
+          en sus unidades de renta corta. El proyecto se centra en la integración de tres pilares fundamentales: 
+          <strong>identidad regional, sostenibilidad y altos estándares de calidad</strong>.
         </p>
-        <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">
-          El objetivo final es posicionar a Oceana como un referente en hospitalidad responsable, fomentando la economía local y maximizando 
-          la fidelización del huésped a través de una oferta auténtica y sofisticada.
+        <p>
+          Mediante una fase piloto en <strong>La Serena</strong>, la iniciativa busca diferenciar la marca a través del uso 
+          de productos emblemáticos como la papaya, la implementación de amenidades eco-amigables y la provisión de un 
+          equipamiento premium. El objetivo final es posicionar a Oceana como un referente en hospitalidad responsable.
         </p>
       </div>
 
@@ -542,144 +839,184 @@
           <h3>Estrategia de Implementación</h3>
           <ul>
             <li>Integración de Productos Locales</li>
-            <li>Amenidades de Bienestar</li>
-            <li>Equipamiento Premium</li>
-            <li>Alianzas Estratégicas</li>
-            <li>Cronograma de 6 Meses</li>
+            <li>Amenidades de Bienestar Premium</li>
+            <li>Equipamiento de Alta Calidad</li>
+            <li>Alianzas Estratégicas Sólidas</li>
+            <li>Cronograma Estructurado</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="implementacion">
+  <section id="implementacion" style="background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);">
     <div class="container">
-      <h2 class="section-title">Plan de Implementación</h2>
-      <p class="section-subtitle">Transformando la Experiencia del Huésped</p>
+      <div class="section-header">
+        <span class="section-label">Plan de Acción</span>
+        <h2 class="section-title">Implementación Estratégica</h2>
+        <p class="section-subtitle">Transformando la Experiencia del Huésped en 6 Meses</p>
+      </div>
       
       <div class="grid-3">
         <div class="feature-card glass">
           <div class="feature-icon">🍑</div>
           <h3>Productos Locales</h3>
-          <p>Integración de la papaya y productos de la Región de Coquimbo: mermeladas, dulces, jugos naturales, pisco local y artesanía en piedra combarbalita.</p>
+          <p>
+            Integración de la papaya como eje central en La Serena: mermeladas, dulces, jugos naturales y pisco local. 
+            Inclusión de artesanía en piedra combarbalita, cerámica diaguita y textiles regionales.
+          </p>
         </div>
         
         <div class="feature-card glass">
           <div class="feature-icon">🛁</div>
           <h3>Amenidades Premium</h3>
-          <p>Set de bienvenida en madera reciclada, velas aromáticas naturales, accesorios de higiene premium y condimentos presentados en vidrio etiquetado.</p>
+          <p>
+            Sets de bienvenida en madera reciclada con velas aromáticas naturales. Accesorios de higiene premium, 
+            condimentos presentados en frascos de vidrio etiquetados y guías de origen detalladas.
+          </p>
         </div>
         
         <div class="feature-card glass">
           <div class="feature-icon">🏠</div>
           <h3>Equipamiento Completo</h3>
-          <p>Cocinas con cafetera, licuadora y horno. Salas con smart TV y plataformas digitales. Dormitorios con ropa de cama de alta calidad y batas con logotipo.</p>
+          <p>
+            Cocinas con cafetera eléctrica y francesa, licuadora, tostadora y horno. Salas con Smart TV y plataformas 
+            digitales. Dormitorios con ropa de cama de alta calidad y batas con logotipo.
+          </p>
         </div>
       </div>
 
-      <div class="content-block glass" style="margin-top: 60px;">
-        <h3>Alianzas Estratégicas y Cronograma</h3>
+      <div class="table-container glass" style="margin-top: 60px; padding: 40px;">
+        <h3 style="color: var(--accent); margin-bottom: 30px; font-size: 1.8rem;">Cronograma de Implementación</h3>
         <table>
-          <tr>
-            <td><strong>Mes 1</strong></td>
-            <td>Identificación de productores y diseño de materiales sostenibles</td>
-          </tr>
-          <tr>
-            <td><strong>Mes 2</strong></td>
-            <td>Adquisición de equipamiento (frigobares, mobiliario, electrodomésticos)</td>
-          </tr>
-          <tr>
-            <td><strong>Mes 3-4</strong></td>
-            <td>Implementación física de amenidades y kits de bienvenida</td>
-          </tr>
-          <tr>
-            <td><strong>Mes 5</strong></td>
-            <td>Evaluación inicial de satisfacción y ajustes operativos</td>
-          </tr>
-          <tr>
-            <td><strong>Mes 6+</strong></td>
-            <td>Expansión a otras zonas (Valle del Maipo, Sur de Chile)</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Fase</th>
+              <th>Mes</th>
+              <th>Actividades Clave</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Diseño</strong></td>
+              <td>Mes 1</td>
+              <td>Identificación de productores y diseño de materiales sostenibles</td>
+            </tr>
+            <tr>
+              <td><strong>Adquisición</strong></td>
+              <td>Mes 2</td>
+              <td>Adquisición de equipamiento: frigobares, mobiliario, electrodomésticos</td>
+            </tr>
+            <tr>
+              <td><strong>Implementación</strong></td>
+              <td>Mes 3-4</td>
+              <td>Implementación física de amenidades y kits de bienvenida</td>
+            </tr>
+            <tr>
+              <td><strong>Evaluación</strong></td>
+              <td>Mes 5</td>
+              <td>Evaluación inicial de satisfacción y ajustes operativos</td>
+            </tr>
+            <tr>
+              <td><strong>Expansión</strong></td>
+              <td>Mes 6+</td>
+              <td>Inicio de expansión a otras zonas geográficas adaptando identidad local</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <section class="media-section" id="medios">
+  <section id="medios">
     <div class="container">
-      <h2 class="section-title">Medios y Recursos</h2>
-      <p class="section-subtitle">Videos, Audio y Documentos del Proyecto</p>
+      <div class="section-header">
+        <span class="section-label">Recursos Multimedia</span>
+        <h2 class="section-title">Medios y Documentación</h2>
+        <p class="section-subtitle">Videos, Audio y Documentos del Proyecto Estratégico</p>
+      </div>
       
       <div class="media-grid">
         <div class="media-item glass">
-          <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; margin-bottom: 10px;">Video: Proyecto Estratégico</h4>
-          <video controls preload="metadata" style="width: 100%; border-radius: 8px;" poster="assets/unnamed_4.png">
+          <div class="media-label">Video: Proyecto Estratégico</div>
+          <video controls preload="metadata" poster="assets/unnamed_4.png">
             <source src="assets/video_compressed.mp4" type="video/mp4">
             Tu navegador no soporta video HTML5.
           </video>
-          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 10px;">Video comprimido para web (8MB)</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 15px;">Video comprimido para web (8MB) - Proyecto Estratégico Oceana</p>
         </div>
         
         <div class="media-item glass">
-          <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; margin-bottom: 10px;">Audio: Modernización Sustentable</h4>
-          <div style="padding: 20px; background: rgba(65, 196, 230, 0.1); border-radius: 8px; border: 1px solid rgba(65, 196, 230, 0.3); margin-top: 15px;">
+          <div class="media-label">Audio: Modernización Sustentable</div>
+          <div style="padding: 25px; background: rgba(65, 196, 230, 0.08); border-radius: 12px; border: 1px solid rgba(65, 196, 230, 0.2); margin-top: 20px;">
             <audio controls preload="none" style="width: 100%;">
-              <source src="assets/Modernizacion_sustentable_de_los_apart_hoteles_Oceana_1.m4a" type="audio/mp4">
+              <source src="assets/Modernización_sustentable_de_los_apart_hoteles_Oceana_1.m4a" type="audio/mp4">
               Tu navegador no soporta audio HTML5.
             </audio>
           </div>
-          <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 10px;">Audio explicativo del proyecto (3.5MB)</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 15px;">Audio explicativo del proyecto (3.5MB)</p>
         </div>
         
         <div class="media-item glass">
-          <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; margin-bottom: 10px;">Documento: Proyecto Amenidades</h4>
-          <div style="text-align: center; padding: 30px 20px; background: rgba(65, 196, 230, 0.05); border-radius: 8px; margin-top: 15px;">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#41c4e6" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            <p style="margin-top: 15px;"><a href="assets/proyecto_amenidades.pdf" style="color: #41c4e6; text-decoration: none; font-weight: 600;">Descargar PDF</a></p>
+          <div class="media-label">PDF: Proyecto Amenidades</div>
+          <div style="text-align: center; padding: 40px 30px; background: rgba(65, 196, 230, 0.05); border-radius: 12px; margin-top: 20px;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <p style="margin-top: 20px;"><a href="assets/proyecto_amenidades.pdf" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: 1.1rem;">Descargar PDF</a></p>
           </div>
         </div>
         
         <div class="media-item glass">
-          <h4 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; margin-bottom: 10px;">Documento: The New Oceana Standard</h4>
-          <div style="text-align: center; padding: 30px 20px; background: rgba(65, 196, 230, 0.05); border-radius: 8px; margin-top: 15px;">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#41c4e6" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            <p style="margin-top: 15px;"><a href="assets/The_New_Oceana_Standard.pdf" style="color: #41c4e6; text-decoration: none; font-weight: 600;">Descargar PDF</a></p>
+          <div class="media-label">PDF: The New Oceana Standard</div>
+          <div style="text-align: center; padding: 40px 30px; background: rgba(65, 196, 230, 0.05); border-radius: 12px; margin-top: 20px;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <p style="margin-top: 20px;"><a href="assets/The_New_Oceana_Standard.pdf" style="color: var(--accent); text-decoration: none; font-weight: 600; font-size: 1.1rem;">Descargar PDF</a></p>
           </div>
         </div>
       </div>
       
-      <div class="grid-3" style="margin-top: 30px;">
+      <div class="grid-3" style="margin-top: 40px;">
         <div class="media-item glass">
-          <img src="assets/Logo_Burbujas_2_0_png_1.png" alt="Logo Burbujas" style="width: 100%; border-radius: 8px;">
+          <img src="assets/Logo_Burbujas_2_0_png_1.png" alt="Logo Burbujas">
         </div>
         <div class="media-item glass">
-          <img src="assets/unnamed_4.png" alt="Proyecto" style="width: 100%; border-radius: 8px;">
+          <img src="assets/unnamed_4.png" alt="Proyecto">
         </div>
         <div class="media-item glass">
-          <img src="assets/NotebookLM_Mind_Map_2.png" alt="Mind Map" style="width: 100%; border-radius: 8px;">
+          <img src="assets/NotebookLM_Mind_Map_2.png" alt="Mind Map">
         </div>
       </div>
     </div>
   </section>
 
-  <section class="contact-section" id="contacto">
+  <section id="contacto" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
     <div class="container">
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-subtitle">Conecta con el Proyecto Oceana</p>
+      <div class="section-header">
+        <span class="section-label">Conecta con Nosotros</span>
+        <h2 class="section-title">Contacto Estratégico</h2>
+        <p class="section-subtitle">Inversiones, Alianzas y Expansión del Proyecto</p>
+      </div>
       
       <div class="contact-grid">
-        <div>
-          <div class="content-block glass">
-            <h3 style="color: #41c4e6; margin-bottom: 20px;">Información de Contacto</h3>
-            <p style="color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 20px;">
-              ¿Interesado en el proyecto? Contáctanos para más información sobre inversiones, alianzas estratégicas o implementación.
-            </p>
-            <ul style="list-style: none; padding: 0;">
-              <li style="padding: 10px 0; color: rgba(255,255,255,0.8);">📧 hola@oceana.mx</li>
-              <li style="padding: 10px 0; color: rgba(255,255,255,0.8);">📱 +52 123 456 7890</li>
-              <li style="padding: 10px 0; color: rgba(255,255,255,0.8);">📍 La Serena, Chile</li>
-            </ul>
-          </div>
+        <div class="contact-info glass">
+          <h3>Información de Contacto</h3>
+          <p>
+            ¿Interesado en el proyecto? Contáctanos para más información sobre inversiones, 
+            alianzas estratégicas o implementación en nuevas regiones.
+          </p>
+          <ul class="contact-details">
+            <li>
+              <span>📧</span>
+              <span>hola@oceana.mx</span>
+            </li>
+            <li>
+              <span>📱</span>
+              <span>+52 123 456 7890</span>
+            </li>
+            <li>
+              <span>📍</span>
+              <span>La Serena, Chile (Fase Piloto)</span>
+            </li>
+          </ul>
           
           <a href="https://wa.me/521234567890" class="whatsapp-btn" target="_blank">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.193 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
@@ -688,21 +1025,41 @@
           
           <div class="qr-code">
             <img src="assets/codigo-qr-2.png" alt="QR Code WhatsApp">
-            <p style="color: rgba(255,255,255,0.7); margin-top: 10px; font-size: 0.9rem;">Escanea para contacto directo</p>
+            <p style="color: var(--text-muted); margin-top: 15px; font-size: 0.95rem;">Escanea para contacto directo</p>
           </div>
         </div>
         
-        <div>
-          <div class="content-block glass">
-            <h3 style="color: #41c4e6; margin-bottom: 20px;">Proyección de Expansión</h3>
-            <ul style="list-style: none; padding: 0;">
-              <li style="padding: 10px 0; color: rgba(255,255,255,0.8);">🌴 <strong>Norte Chico:</strong> Aceitunas y productos derivados</li>
-              <li style="padding: 10px 0; color: rgba(255,255,255,0.8);">🍷 <strong>Valle del Maipo:</strong> Cultura vitivinícola</li>
-              <li style="padding: 10px 0; color: rgba(255,255,255,0.8);">🌲 <strong>Sur de Chile:</strong> Miel y productos forestales</li>
-            </ul>
-            <p style="color: rgba(255,255,255,0.8); line-height: 1.8; margin-top: 20px;">
-              <strong>Inversión inicial:</strong> Desde $150,000 USD<br>
-              <strong>ROI proyectado:</strong> Rentabilidad optimizada en 5 años
+        <div class="glass" style="padding: 50px;">
+          <h3 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 30px;">Proyección de Expansión</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 15px 0; color: var(--text-muted); border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 15px;">
+              <span style="font-size: 1.5rem;">🌴</span>
+              <div>
+                <strong style="color: white; display: block;">Norte Chico</strong>
+                <span>Aceitunas y productos derivados</span>
+              </div>
+            </li>
+            <li style="padding: 15px 0; color: var(--text-muted); border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 15px;">
+              <span style="font-size: 1.5rem;">🍷</span>
+              <div>
+                <strong style="color: white; display: block;">Valle del Maipo</strong>
+                <span>Cultura vitivinícola</span>
+              </div>
+            </li>
+            <li style="padding: 15px 0; color: var(--text-muted); display: flex; align-items: center; gap: 15px;">
+              <span style="font-size: 1.5rem;">🌲</span>
+              <div>
+                <strong style="color: white; display: block;">Sur de Chile</strong>
+                <span>Miel y productos forestales</span>
+              </div>
+            </li>
+          </ul>
+          <div style="margin-top: 40px; padding: 30px; background: rgba(65, 196, 230, 0.05); border-radius: 12px; border: 1px solid rgba(65, 196, 230, 0.2);">
+            <p style="color: var(--accent); font-size: 1.1rem; margin-bottom: 10px;"><strong>Inversión Inicial</strong></p>
+            <p style="color: white; font-size: 2rem; font-weight: 700; margin-bottom: 20px;">$150,000 USD</p>
+            <p style="color: var(--text-muted); line-height: 1.8;">
+              <strong style="color: var(--accent-light);">ROI Proyectado:</strong> Rentabilidad optimizada en 5 años<br>
+              <strong style="color: var(--accent-light);">Modelo:</strong> Escalable y replicable
             </p>
           </div>
         </div>
@@ -712,8 +1069,8 @@
 
   <footer>
     <div class="container">
-      <p style="margin-bottom: 20px;">© 2026 Oceana. Todos los derechos reservados.</p>
-      <p>Impulsado por <a href="https://www.instagram.com/tu.web.pro360/?hl=en" target="_blank">@tu.web.pro360</a></p>
+      <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--text-muted);">© 2026 Oceana. Todos los derechos reservados.</p>
+      <p style="font-size: 0.95rem;">Impulsado por <a href="https://www.instagram.com/tu.web.pro360/?hl=en" target="_blank">@tu.web.pro360</a></p>
     </div>
   </footer>
 
@@ -721,8 +1078,8 @@
   
   <div class="chatbot-panel" id="chatbot-panel">
     <div class="chatbot-header">
-      <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem;">Burbuja AI</h3>
-      <button id="chatbot-close" style="background: none; border: none; color: white; cursor: pointer; font-size: 1.5rem;">×</button>
+      <h3>Burbuja AI</h3>
+      <button class="chatbot-close" id="chatbot-close">×</button>
     </div>
     <div class="chatbot-messages" id="chatbot-messages">
       <div class="message bot">
@@ -746,7 +1103,7 @@
       }
     });
     
-    // Chatbot
+    // Chatbot functionality
     var chatbotToggle = document.getElementById('chatbot-toggle');
     var chatbotPanel = document.getElementById('chatbot-panel');
     var chatbotClose = document.getElementById('chatbot-close');
@@ -779,7 +1136,7 @@
       // Show typing indicator
       var typingDiv = document.createElement('div');
       typingDiv.className = 'message bot';
-      typingDiv.innerHTML = '<em>Burbuja está escribiendo...</em>';
+      typingDiv.innerHTML = '<em style="color: var(--text-muted);">Burbuja está escribiendo...</em>';
       chatbotMessages.appendChild(typingDiv);
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
       
@@ -819,7 +1176,7 @@
       if (e.key === 'Enter') chatbotSend.click();
     });
     
-    // Smooth scroll for nav links
+    // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -828,6 +1185,28 @@
           target.scrollIntoView({ behavior: 'smooth' });
         }
       });
+    });
+    
+    // Intersection Observer for fade-in animations
+    var observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.feature-card, .media-item, .executive-summary').forEach(function(el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      observer.observe(el);
     });
   </script>
 </body>
