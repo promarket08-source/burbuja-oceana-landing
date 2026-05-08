@@ -787,33 +787,56 @@
     };
     var defaultResponse = 'Interesante pregunta. Te recomiendo explorar las secciones de la página para más información. También puedes contactarnos por WhatsApp.';
     
-    chatbotSend.addEventListener('click', function() {
-      var userMessage = chatbotInput.value.toLowerCase();
+    chatbotSend.addEventListener('click', async function() {
+      var userMessage = chatbotInput.value.trim();
       if (!userMessage) return;
       
       // Add user message
       var userDiv = document.createElement('div');
       userDiv.className = 'message user';
-      userDiv.textContent = chatbotInput.value;
+      userDiv.textContent = userMessage;
       chatbotMessages.appendChild(userDiv);
       
-      // Bot response
-      setTimeout(function() {
+      // Clear input
+      chatbotInput.value = '';
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      
+      // Show typing indicator
+      var typingDiv = document.createElement('div');
+      typingDiv.className = 'message bot';
+      typingDiv.innerHTML = '<em>Burbuja está escribiendo...</em>';
+      chatbotMessages.appendChild(typingDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      
+      try {
+        // Call MCP-powered API
+        var response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: userMessage })
+        });
+        
+        var data = await response.json();
+        
+        // Remove typing indicator
+        chatbotMessages.removeChild(typingDiv);
+        
+        // Add bot response
         var botDiv = document.createElement('div');
         botDiv.className = 'message bot';
-        var response = defaultResponse;
-        for (var key in botResponses) {
-          if (userMessage.includes(key)) {
-            response = botResponses[key];
-            break;
-          }
-        }
-        botDiv.textContent = response;
+        botDiv.textContent = data.response || 'Disculpa, hubo un error. Intenta de nuevo.';
         chatbotMessages.appendChild(botDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-      }, 500);
+      } catch (error) {
+        // Remove typing indicator
+        chatbotMessages.removeChild(typingDiv);
+        
+        // Add error message
+        var errorDiv = document.createElement('div');
+        errorDiv.className = 'message bot';
+        errorDiv.textContent = 'Disculpa, hubo un error de conexión. Intenta de nuevo.';
+        chatbotMessages.appendChild(errorDiv);
+      }
       
-      chatbotInput.value = '';
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     });
     
