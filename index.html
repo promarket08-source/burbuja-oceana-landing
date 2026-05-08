@@ -94,12 +94,46 @@
     }
     
     .hero::before {
-      content: ''; position: absolute;
-      width: 600px; height: 600px;
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
       background-image: url('assets/Logo_Burbujas_2_0_png_1.png');
       background-size: contain; background-repeat: no-repeat; background-position: center;
-      opacity: 0.08; top: -150px; right: -150px;
-      animation: float 12s ease-in-out infinite;
+      opacity: 0.12; top: -100px; left: -100px;
+      animation: float 15s ease-in-out infinite;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 450px; height: 450px;
+      background-image: url('assets/unnamed_4.png');
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      opacity: 0.1; bottom: -80px; right: -80px;
+      animation: float 18s ease-in-out infinite reverse;
+    }
+    
+    .hero-logos {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      z-index: 2;
+      opacity: 0.06;
+    }
+    
+    .hero-logos img {
+      width: 300px;
+      height: auto;
+      animation: float 20s ease-in-out infinite;
+    }
+    
+    .hero-logos img:last-child {
+      animation-delay: -5s;
+      width: 280px;
     }
     
     .hero::after {
